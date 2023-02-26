@@ -10,17 +10,17 @@ PORT=5000
 
 
 then run these commands:
-cd flightmatch
-cd server
-npm install
-node server.js
+1. cd flightmatch
+2. cd server
+3. npm install
+4. node server.js
 
 **********************************************************
 Instructions for running client:
 run these commands:
-cd flightmatch
-cd client
-npm install
-npm start
+1. cd flightmatch
+2. cd client
+3. npm install
+4. npm start
 
 *Note- there may be an issue with deprecated packages, and you might need to run the command npm audit fix and/or npm audit fix --force
