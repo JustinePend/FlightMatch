@@ -58,6 +58,11 @@ export default function Navbar() {
                 About
               </NavLink>
             </li>
+            <li className="login">
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
+            </li>
           </ul>
         </div>
       </nav>
