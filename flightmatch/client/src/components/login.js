@@ -22,7 +22,7 @@ export default function Login() {
     const newEntry = { ...form };
 
     //TODO: probably have to change stuff here for backend!
-    await fetch("http://localhost:5000/arriving/add", {
+    await fetch("http://localhost:5001/arriving/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", 
@@ -46,13 +46,13 @@ export default function Login() {
         <div className="form-group">
           <label htmlFor="UID">UID</label>
           <input
-            type="number"
+            type="tel"
             className="form-control"
             id="UID"
             value={form.UID}
-            required
-            minlength="9"
-            maxlength="9"
+            maxLength="9"
+            pattern="\d*"
+            title="UID must contain only integers"
             onChange={(e) => updateForm({ UID: e.target.value })}
           />
         </div>

@@ -24,7 +24,7 @@ export default function Create() {
     // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
 
-    await fetch("http://localhost:5000/arriving/add", {
+    await fetch("http://localhost:5001/arriving/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,25 +52,26 @@ export default function Create() {
             className="form-control"
             id="number"
             value={form.number}
+            required
+            maxLength="10"
             onChange={(e) => updateForm({ number: e.target.value })}
           />
         </div>
         <div className="form-group">
         <label htmlFor="date">Date of Arrival</label>
           <input
-            type="text"
+            type="date"
             className="form-control"
             id="date"
             value={form.date}
+            required
             onChange={(e) => updateForm({ date: e.target.value })}
           />
-
         </div>
-
         <div className="form-group">
           <label htmlFor="time">Time of Arrival</label>
           <input
-            type="text"
+            type="time"
             className="form-control"
             id="time"
             value={form.time}

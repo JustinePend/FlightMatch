@@ -6,7 +6,8 @@ Instructions for running server:
 create a file called config.env with the following
 
 ATLAS_URI=mongodb+srv://<user>:<password>@cluster0.lgu1nqk.mongodb.net/?retryWrites=true&w=majority
-PORT=5000
+
+PORT=5001
 
 
 then run these commands:
