@@ -72,6 +72,7 @@ export default function RecordList() {
         <thead>
           <tr>
             <th>Flight Number</th>
+            <th>Arrival Date</th>
             <th>Arrival Time</th>
             <th>Baggage</th>
             <th>Action</th>
