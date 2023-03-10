@@ -3,9 +3,9 @@ import { useParams, useNavigate } from "react-router";
 
 export default function Edit() {
   const [form, setForm] = useState({
-    name: "",
-    position: "",
-    level: "",
+    number: "",
+    time: "",
+    baggage: "",
     records: [],
   });
   const params = useParams();
@@ -14,7 +14,7 @@ export default function Edit() {
   useEffect(() => {
     async function fetchData() {
       const id = params.id.toString();
-      const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
+      const response = await fetch(`http://localhost:5000/arriving/${params.id.toString()}`);
 
       if (!response.ok) {
         const message = `An error has occured: ${response.statusText}`;
@@ -24,7 +24,7 @@ export default function Edit() {
 
       const record = await response.json();
       if (!record) {
-        window.alert(`Record with id ${id} not found`);
+        window.alert(`Arriving fligh with id ${id} not found`);
         navigate("/");
         return;
       }
@@ -46,16 +46,16 @@ export default function Edit() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    const editedPerson = {
-      name: form.name,
-      position: form.position,
-      level: form.level,
+    const editedFlight = {
+      number: form.number,
+      time: form.time,
+      baggage: form.baggage,
     };
 
     // This will send a post request to update the data in the database.
     await fetch(`http://localhost:5000/update/${params.id}`, {
       method: "POST",
-      body: JSON.stringify(editedPerson),
+      body: JSON.stringify(editedFlight),
       headers: {
         'Content-Type': 'application/json'
       },
@@ -70,23 +70,23 @@ export default function Edit() {
       <h3>Update Record</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name: </label>
+          <label htmlFor="name">Number: </label>
           <input
             type="text"
             className="form-control"
-            id="name"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
+            id="number"
+            value={form.number}
+            onChange={(e) => updateForm({ number: e.target.value })}
           />
         </div>
         <div className="form-group">
-          <label htmlFor="position">Position: </label>
+          <label htmlFor="time">Time: </label>
           <input
             type="text"
             className="form-control"
-            id="position"
-            value={form.position}
-            onChange={(e) => updateForm({ position: e.target.value })}
+            id="time"
+            value={form.time}
+            onChange={(e) => updateForm({ time: e.target.value })}
           />
         </div>
         <div className="form-group">
@@ -94,38 +94,26 @@ export default function Edit() {
             <input
               className="form-check-input"
               type="radio"
-              name="positionOptions"
-              id="positionIntern"
-              value="Intern"
-              checked={form.level === "Intern"}
-              onChange={(e) => updateForm({ level: e.target.value })}
+              name="baggageOptions"
+              id="hasBaggage"
+              value="true"
+              checked={form.baggage === "true"}
+              onChange={(e) => updateForm({ baggage: e.target.value })}
             />
-            <label htmlFor="positionIntern" className="form-check-label">Intern</label>
+            <label htmlFor="hasBaggage" className="form-check-label">Baggage</label>
           </div>
           <div className="form-check form-check-inline">
             <input
               className="form-check-input"
               type="radio"
-              name="positionOptions"
-              id="positionJunior"
-              value="Junior"
-              checked={form.level === "Junior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
+              name="baggageOptions"
+              id="noBaggage"
+              value="false"
+              checked={form.baggage === "false"}
+              onChange={(e) => updateForm({ baggage: e.target.value })}
             />
-            <label htmlFor="positionJunior" className="form-check-label">Junior</label>
+            <label htmlFor="noBaggage" className="form-check-label">No Baggage</label>
           </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="positionOptions"
-              id="positionSenior"
-              value="Senior"
-              checked={form.level === "Senior"}
-              onChange={(e) => updateForm({ level: e.target.value })}
-            />
-            <label htmlFor="positionSenior" className="form-check-label">Senior</label>
-        </div>
         </div>
         <br />
 

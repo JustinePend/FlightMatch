@@ -11,9 +11,10 @@ export default function Navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <NavLink className="navbar-brand" to="/">
-        <img style={{"width" : 25 + '%'}} src="https://d3cy9zhslanhfa.cloudfront.net/media/3800C044-6298-4575-A05D5C6B7623EE37/4B45D0EC-3482-4759-82DA37D8EA07D229/webimage-8A27671A-8A53-45DC-89D7BF8537F15A0D.png"></img>
+        <NavLink className="nav-link" to="/">
+          <h1>FlightMatch</h1>
         </NavLink>
+        {/*  
         <button
           className="navbar-toggler"
           type="button"
@@ -25,12 +26,41 @@ export default function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+      */}
+      
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        
+
+        <div className="topbar">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
+            <li className="home">
+              <NavLink className="nav-link" to="/">
+                Home
+              </NavLink>
+            </li>
+            <li className="create-flight">
               <NavLink className="nav-link" to="/create">
-                Create Record
+                Create Flight
+              </NavLink>
+            </li>
+            <li className="profile">
+              <NavLink className="nav-link" to="/">
+                Profile
+              </NavLink>
+            </li>
+            <li className="groups">
+              <NavLink className="nav-link" to="/">
+                View Groups
+              </NavLink>
+            </li>
+            <li className="about">
+              <NavLink className="nav-link" to="/">
+                About
+              </NavLink>
+            </li>
+            <li className="login">
+              <NavLink className="nav-link" to="/login">
+                Login
               </NavLink>
             </li>
           </ul>
