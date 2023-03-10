@@ -14,7 +14,7 @@ export default function Edit() {
   useEffect(() => {
     async function fetchData() {
       const id = params.id.toString();
-      const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
+      const response = await fetch(`http://localhost:5000/arriving/${params.id.toString()}`);
 
       if (!response.ok) {
         const message = `An error has occured: ${response.statusText}`;
@@ -24,7 +24,7 @@ export default function Edit() {
 
       const record = await response.json();
       if (!record) {
-        window.alert(`Record with id ${id} not found`);
+        window.alert(`Arriving fligh with id ${id} not found`);
         navigate("/");
         return;
       }

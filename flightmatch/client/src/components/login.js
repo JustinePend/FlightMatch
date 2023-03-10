@@ -18,11 +18,11 @@ export default function Login() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    // When a post request is sent to the create url, we'll add a new record to the database.
+    // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
 
     //TODO: probably have to change stuff here for backend!
-    await fetch("http://localhost:5000/record/add", {
+    await fetch("http://localhost:5000/arriving/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", 
