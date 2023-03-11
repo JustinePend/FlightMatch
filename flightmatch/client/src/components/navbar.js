@@ -54,7 +54,7 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="about">
-              <NavLink className="nav-link" to="/">
+              <NavLink className="nav-link" to="/about">
                 About
               </NavLink>
             </li>
