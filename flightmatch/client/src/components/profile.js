@@ -24,8 +24,21 @@ export default function Profile() {
     // When a post request is sent to the create url, we'll add a new record to the database.
     const newEntry = { ...form };
 
-    //TODO: probably have to change stuff here for backend!
-    await fetch("http://localhost:5001/record/add", {
+        // //TODO: probably have to change stuff here for backend!
+        // await fetch("http://localhost:5001/profiles/add", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json", 
+        //   },
+        //   body: JSON.stringify(newEntry),
+        // })
+        // .catch(error => {
+        //   window.alert(error);
+        //   return;
+        // });
+
+    //Create profile with all elements
+    await fetch("http://localhost:5001/profiles/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", 
@@ -37,7 +50,7 @@ export default function Profile() {
       return;
     });
 
-    setForm({ name: ""});
+    setForm({ UID: "", phone:"", email: "", name: ""});
     navigate("/");
   }
 

@@ -21,21 +21,11 @@ export default function Login() {
     // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
 
-    //TODO: probably have to change stuff here for backend!
-    await fetch("http://localhost:5001/profiles/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", 
-      },
-      body: JSON.stringify(newEntry),
-    })
-    .catch(error => {
-      window.alert(error);
-      return;
-    });
 
+    //create cookie with UID
     setForm({ UID: ""});
-    navigate("/");
+    document.cookie = "UID="+form.UID;
+    navigate("/profile");
   }
 
   // This following section will display the form that takes the input from the user.
