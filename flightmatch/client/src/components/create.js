@@ -36,7 +36,7 @@ export default function Create() {
       return;
     });
 
-    setForm({ number: "", date:"",time: "", baggage: "" });
+    setForm({ number: "", date: "",time: "", baggage: "" });
     navigate("/");
   }
 
