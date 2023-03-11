@@ -36,7 +36,7 @@ export default function Create() {
       return;
     });
 
-    setForm({ number: "", date: "",time: "", baggage: "" });
+    setForm({ number: "", date: "", time: "", baggage: "" });
     navigate("/");
   }
 
@@ -53,7 +53,7 @@ export default function Create() {
             id="number"
             value={form.number}
             required
-            maxLength="10"
+            maxLength="100"
             onChange={(e) => updateForm({ number: e.target.value })}
           />
         </div>
@@ -64,7 +64,6 @@ export default function Create() {
             className="form-control"
             id="date"
             value={form.date}
-            required
             onChange={(e) => updateForm({ date: e.target.value })}
           />
         </div>
