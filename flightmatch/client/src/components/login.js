@@ -22,7 +22,7 @@ export default function Login() {
     const newEntry = { ...form };
 
     //TODO: probably have to change stuff here for backend!
-    await fetch("http://localhost:5001/arriving/add", {
+    await fetch("http://localhost:5001/profiles/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", 
@@ -50,6 +50,7 @@ export default function Login() {
             className="form-control"
             id="UID"
             value={form.UID}
+            requried
             maxLength="9"
             pattern="\d*"
             title="UID must contain only integers"

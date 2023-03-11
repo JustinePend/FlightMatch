@@ -1,3 +1,4 @@
+
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -7,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(require("./routes/arrivals"));
 app.use(require("./routes/departures"));
-app.use(require("./routes/profile-list"));
+app.use(require("./routes/profiles"));
 // get driver connection
 const dbo = require("./db/conn");
 

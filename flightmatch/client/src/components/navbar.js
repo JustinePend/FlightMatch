@@ -14,22 +14,6 @@ export default function Navbar() {
         <NavLink className="nav-link" to="/">
           <h1>FlightMatch</h1>
         </NavLink>
-        {/*  
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-      */}
-      
-
-        
 
         <div className="topbar">
           <ul className="navbar-nav ml-auto">
