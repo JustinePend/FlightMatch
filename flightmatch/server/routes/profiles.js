@@ -36,11 +36,17 @@ profilesRoutes.route("/profiles/:id").get(function (req, res) {
       });
 });
 
+
+
+
 // This section will help you create a new profile.
 profilesRoutes.route("/profiles/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     UID: req.body.UID,
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
   };
   db_connect.collection("profiles").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -48,13 +54,17 @@ profilesRoutes.route("/profiles/add").post(function (req, response) {
   });
 });
 
+
+
 // This section will help you update a profile by id.
 profilesRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
     $set: {
-      UID: req.body.UID,
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
     },
   };
   db_connect
