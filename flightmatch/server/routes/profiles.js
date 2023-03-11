@@ -12,7 +12,7 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 
-// This section will help you get a list of all the profiles flights.
+// This section will help you get a list of all the profiles.
 profiles.route("/profiles").get(function (req, res) {
   let db_connect = dbo.getDb("flights");
   db_connect
@@ -24,7 +24,7 @@ profiles.route("/profiles").get(function (req, res) {
     });
 });
 
-// This section will help you get a single profiles flight by id
+// This section will help you get a single profiles by id
 profiles.route("/profiles/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
@@ -36,13 +36,14 @@ profiles.route("/profiles/:id").get(function (req, res) {
       });
 });
 
-// This section will help you create a new profiles flight.
+// This section will help you create a new profiles.
 profiles.route("/profiles/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     name: req.body.name,
     uid: req.body.uid,
     email: req.body.email,
+    phone: req.body.phone,
   };
   db_connect.collection("profiles").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -59,6 +60,7 @@ profiles.route("/update/:id").post(function (req, response) {
         name: req.body.name,
         uid: req.body.uid,
         email: req.body.email,
+        phone: req.body.phone,
     },
   };
   db_connect
@@ -70,7 +72,7 @@ profiles.route("/update/:id").post(function (req, response) {
     });
 });
 
-// This section will help you delete an profiles flight
+// This section will help you delete an profiles
 profiles.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
