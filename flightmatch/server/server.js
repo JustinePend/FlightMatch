@@ -24,7 +24,6 @@ app.engine('hbs', exphbs.engine({
 app.set('view engine', 'hbs');
 
 // Our requests hadlers will be implemented here...
-app.listen(3000);
 app.get('/', function (req, res) {
   res.render('home');
 });
