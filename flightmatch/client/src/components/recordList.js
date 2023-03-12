@@ -15,10 +15,8 @@ const Record = (props) => (
         }}
       >
         Delete
-      </button>
-      <button className="btn btn-link">
-        Request Match
-      </button>
+      </button> | 
+      <Link className="btn btn-link" to={`/request/${props.record._id}`}>Request</Link> 
     </td>
   </tr>
 );
