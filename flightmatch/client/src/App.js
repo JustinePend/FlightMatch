@@ -11,6 +11,7 @@ import Create from "./components/create";
 import Login from "./components/login";
 import Profile from "./components/profile";
 import Request from "./components/request";
+import Groups from "./components/groups";
 
 const App = () => {
   return (
@@ -24,7 +25,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/request" element={<Request />} />
-      </Routes>
+        <Route path="/groups" element={<Groups />} />
+       </Routes>
       </div>
     </div>
   );
