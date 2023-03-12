@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const Record = (props) => (
   <tr>
     <td>{props.record.number}</td>
+    <td>{props.record.date}</td>
     <td>{props.record.time}</td>
     <td>{props.record.baggage}</td>
     <td>
@@ -14,6 +15,9 @@ const Record = (props) => (
         }}
       >
         Delete
+      </button>
+      <button className="btn btn-link">
+        Request Match
       </button>
     </td>
   </tr>

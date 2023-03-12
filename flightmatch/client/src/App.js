@@ -9,10 +9,10 @@ import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 import Login from "./components/login";
+import About from "./components/about";
 import Profile from "./components/profile";
 import Flights from "./components/flights";
 
-var curUID;
 
 const App = () => {
   return (
@@ -20,10 +20,13 @@ const App = () => {
       <Navbar />
       <div style={{ margin: 20 }}>
       <Routes>
-        <Route exact path="/" element={<RecordList />} />
+      <Route exact path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/recordList" element={<RecordList />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/create" element={<Create />} />
-        <Route path="/login" element={<Login />} />
+        
+        <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/flights" element={<Flights />} />
       </Routes>

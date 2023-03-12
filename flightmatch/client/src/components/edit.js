@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router";
 export default function Edit() {
   const [form, setForm] = useState({
     number: "",
+    date: "",
     time: "",
     baggage: "",
     records: [],
@@ -24,7 +25,7 @@ export default function Edit() {
 
       const record = await response.json();
       if (!record) {
-        window.alert(`Arriving fligh with id ${id} not found`);
+        window.alert(`Arriving flight with id ${id} not found`);
         navigate("/");
         return;
       }
@@ -48,6 +49,7 @@ export default function Edit() {
     e.preventDefault();
     const editedFlight = {
       number: form.number,
+      date: form.date,
       time: form.time,
       baggage: form.baggage,
     };
@@ -70,7 +72,7 @@ export default function Edit() {
       <h3>Update Record</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Number: </label>
+          <label htmlFor="name">Flight Number: </label>
           <input
             type="text"
             className="form-control"
@@ -80,7 +82,17 @@ export default function Edit() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="time">Time: </label>
+          <label htmlFor="date">Arrival Date: </label>
+          <input
+            type="text"
+            className="form-control"
+            id="date"
+            value={form.date}
+            onChange={(e) => updateForm({ date: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="time">Arrival Time: </label>
           <input
             type="text"
             className="form-control"

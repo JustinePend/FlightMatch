@@ -18,7 +18,7 @@ export default function Navbar() {
         <div className="topbar">
           <ul className="navbar-nav ml-auto">
             <li className="home">
-              <NavLink className="nav-link" to="/">
+              <NavLink className="nav-link" to="/recordList">
                 Home
               </NavLink>
             </li>
@@ -29,7 +29,7 @@ export default function Navbar() {
             </li>
             <li className="profile">
               <NavLink className="nav-link" to="/profile">
-                Profile {document.cookie}
+                Profile
               </NavLink>
             </li>
             <li className="flights">
@@ -38,7 +38,7 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="about">
-              <NavLink className="nav-link" to="/">
+              <NavLink className="nav-link" to="/about">
                 About
               </NavLink>
             </li>

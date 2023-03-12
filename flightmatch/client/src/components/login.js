@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 
 var currUID=0;
 
-export function getUID(){
+export function getUID(){ //Function to access UID variable
   return currUID;
 }
 
@@ -27,12 +27,10 @@ export default function Login() {
     // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
 
-    document.cookie = form.UID;
-    console.log(document.cookie);
-
+    //Set UID variable to accessed elsewhere
     currUID = form.UID;
 
-    //create cookie with UID
+    //Clear Form
     setForm({ UID: ""});
     
     

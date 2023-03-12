@@ -41,6 +41,7 @@ arrivingRoutes.route("/arriving/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     number: req.body.number,
+    date: req.body.date,
     time: req.body.time,
     baggage: req.body.baggage,
   };
@@ -57,6 +58,7 @@ arrivingRoutes.route("/update/:id").post(function (req, response) {
   let newvalues = {
     $set: {
       number: req.body.number,
+      date: req.body.date,
       time: req.body.time,
       baggage: req.body.baggage,
     },

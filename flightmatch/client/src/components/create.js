@@ -36,7 +36,7 @@ export default function Create() {
       return;
     });
 
-    setForm({ number: "", date:"",time: "", baggage: "" });
+    setForm({ number: "", date: "", time: "", baggage: "" });
     navigate("/");
   }
 
@@ -46,14 +46,15 @@ export default function Create() {
       <h3>Enter Flight Information</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="number">Flight Number</label>
+          <label htmlFor="number">Flight Number (ex. UA1234)</label>
           <input
             type="text"
             className="form-control"
             id="number"
             value={form.number}
             required="true"
-            maxLength="10"
+            maxLength="6"
+            pattern="[A-Z][A-Z]?\d{1,4}$"
             onChange={(e) => updateForm({ number: e.target.value })}
           />
         </div>
