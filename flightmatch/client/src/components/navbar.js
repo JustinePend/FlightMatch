@@ -29,7 +29,7 @@ export default function Navbar() {
             </li>
             <li className="profile">
               <NavLink className="nav-link" to="/profile">
-                Profile
+                Profile {document.cookie}
               </NavLink>
             </li>
             <li className="groups">

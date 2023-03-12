@@ -11,6 +11,8 @@ import Create from "./components/create";
 import Login from "./components/login";
 import Profile from "./components/profile";
 
+var curUID;
+
 const App = () => {
   return (
     <div>

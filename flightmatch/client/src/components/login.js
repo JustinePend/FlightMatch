@@ -21,10 +21,13 @@ export default function Login() {
     // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
 
+    document.cookie = form.UID;
+    console.log(document.cookie);
 
     //create cookie with UID
     setForm({ UID: ""});
-    document.cookie = "UID="+form.UID;
+    
+
     navigate("/profile");
   }
 

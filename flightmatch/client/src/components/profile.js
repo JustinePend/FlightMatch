@@ -20,10 +20,14 @@ export default function Profile() {
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
-
     // When a post request is sent to the create url, we'll add a new record to the database.
+    
+    console.log(document.cookie);
     const newEntry = { ...form };
-
+    
+    newEntry.UID = document.cookie
+    console.log(form.UID)
+    console.log(newEntry)
         // //TODO: probably have to change stuff here for backend!
         // await fetch("http://localhost:5001/profiles/add", {
         //   method: "POST",
@@ -51,7 +55,7 @@ export default function Profile() {
     });
 
     setForm({ UID: "", phone:"", email: "", name: ""});
-    navigate("/");
+    navigate("/"); 
   }
 
   // This following section will display the form that takes the input from the user.
