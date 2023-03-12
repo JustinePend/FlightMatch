@@ -1,4 +1,5 @@
 import React from "react";
+import {getUID} from "./login.js";
 
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
@@ -44,7 +45,7 @@ export default function Navbar() {
               </NavLink>
             </li>
             <li className="profile">
-              <NavLink className="nav-link" to="/profile">
+              <NavLink className="nav-link" to={"/profile"}>
                 Profile
               </NavLink>
             </li>

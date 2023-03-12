@@ -15,6 +15,9 @@ const Record = (props) => (
       >
         Delete
       </button>
+      <Link className="btn btn-link" to={`/profile/${props.record._id}`}>Request Match</Link> 
+      // need id to UID
+        
     </td>
   </tr>
 );

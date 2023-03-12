@@ -8,7 +8,8 @@ import Navbar from "./components/navbar";
 import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
-import Login from "./components/login";
+import Login, { getUID } from "./components/login";
+import About from "./components/about";
 import Profile from "./components/profile";
 
 const App = () => {
@@ -20,8 +21,9 @@ const App = () => {
         <Route exact path="/" element={<RecordList />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/create" element={<Create />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+        
+        <Route path="/about" element={<About />} />
+        <Route path={"/profile"} element={<Profile />} />
       </Routes>
       </div>
     </div>
