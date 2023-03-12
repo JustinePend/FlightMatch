@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import DatePicker from 'react-date-picker';
+
 
 export default function Create() {
+  
   const [form, setForm] = useState({
     number: "",
     date: "",
@@ -17,6 +20,7 @@ export default function Create() {
     });
   }
 
+  const [value, onChange] = useState(new Date());
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
@@ -38,9 +42,19 @@ export default function Create() {
 
     setForm({ number: "", date: "", time: "", baggage: "" });
     navigate("/");
+
   }
 
-  // This following section will display the form that takes the input from the user.
+  //let current_date = new Date();
+  //current_date = current_date.setMilliseconds(0,10);
+  //let newDate = new Date()
+  //let date = newDate.getDate();
+  //let month = newDate.getMonth() + 1;
+  //let year = newDate.getFullYear();
+
+  const current_date = new Date().toLocaleDateString()  // This following section will display the form that takes the input from the user.
+  const now = new Date();
+
   return (
     <div>
       <h3>Enter Flight Information</h3>
@@ -58,16 +72,17 @@ export default function Create() {
             onChange={(e) => updateForm({ number: e.target.value })}
           />
         </div>
-        <div className="form-group">
-        <label htmlFor="date">Date of Arrival</label>
-          <input
-            type="date"
-            className="form-control"
-            id="date"
-            value={form.date}
-            required
-            onChange={(e) => updateForm({ date: e.target.value })}
-          />
+       <div className="form-group">
+        <label htmlFor="date">Date of Arrival
+        </label>
+        
+        <div>
+        <DatePicker onChange={onChange} value={value} min="2023-03-12"
+      
+        />
+
+        </div>
+          
         </div>
         <div className="form-group">
           <label htmlFor="time">Time of Arrival</label>
