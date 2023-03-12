@@ -45,15 +45,23 @@ export default function Create() {
 
   }
 
-  //let current_date = new Date();
-  //current_date = current_date.setMilliseconds(0,10);
-  //let newDate = new Date()
-  //let date = newDate.getDate();
-  //let month = newDate.getMonth() + 1;
-  //let year = newDate.getFullYear();
+  let date_ob = new Date();
 
-  const current_date = new Date().toLocaleDateString()  // This following section will display the form that takes the input from the user.
-  const now = new Date();
+  // current date
+  // adjust 0 before single digit date
+  let date = ("0" + date_ob.getDate()).slice(-2);
+  
+  // current month
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+  
+  // current year
+  let year = date_ob.getFullYear();
+  
+  // prints date in YYYY-MM-DD format
+  let curr_date=year + "-" + month + "-" + date;
+
+  // const current_date = new Date().toLocaleDateString();  // This following section will display the form that takes the input from the user.
+  // const now = new Date();
 
   return (
     <div>
@@ -77,9 +85,13 @@ export default function Create() {
         </label>
         
         <div>
-        <DatePicker onChange={onChange} value={value} min="2023-03-12"
-      
-        />
+          <DatePicker 
+            onChange={onChange} 
+            value={value} 
+            required
+            minDate={curr_date}
+            maxDate={"2023-06-02"}
+          />
 
         </div>
           
