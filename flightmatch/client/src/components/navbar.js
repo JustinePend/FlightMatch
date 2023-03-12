@@ -34,7 +34,7 @@ export default function Navbar() {
         <div className="topbar">
           <ul className="navbar-nav ml-auto">
             <li className="home">
-              <NavLink className="nav-link" to="/">
+              <NavLink className="nav-link" to="/recordList">
                 Home
               </NavLink>
             </li>
