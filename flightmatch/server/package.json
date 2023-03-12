@@ -48,7 +48,7 @@
     "mime": "^1.6.0",
     "mime-db": "^1.52.0",
     "mime-types": "^2.1.35",
-    "mongodb": "^3.7.3",
+    "mongodb": "5.1",
     "mongoose": "^5.13.16",
     "mongoose-legacy-pluralize": "^1.0.2",
     "mpath": "^0.8.4",
