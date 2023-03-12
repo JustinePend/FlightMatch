@@ -46,7 +46,7 @@ export default function Create() {
       <h3>Enter Flight Information</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="number">Flight Number</label>
+          <label htmlFor="number">Flight Number (ex. UA1234)</label>
           <input
             type="text"
             className="form-control"
@@ -65,6 +65,7 @@ export default function Create() {
             className="form-control"
             id="date"
             value={form.date}
+            required
             onChange={(e) => updateForm({ date: e.target.value })}
           />
         </div>
@@ -75,6 +76,7 @@ export default function Create() {
             className="form-control"
             id="time"
             value={form.time}
+            required
             onChange={(e) => updateForm({ time: e.target.value })}
           />
         </div>
