@@ -12,7 +12,6 @@ import Login from "./components/login";
 import About from "./components/about";
 import Profile from "./components/profile";
 
-var curUID;
 
 const App = () => {
   return (

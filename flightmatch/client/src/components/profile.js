@@ -24,24 +24,10 @@ export default function Profile() {
     e.preventDefault();
     // When a post request is sent to the create url, we'll add a new record to the database.
     
-    console.log(document.cookie);
-    const newEntry = { ...form };
+    const newEntry = { ...form }; //Get form data and set UID
     console.log("this is from calling getUID ", getUID());
-    newEntry.UID = document.cookie
-    console.log(form.UID)
-    console.log(newEntry)
-        // //TODO: probably have to change stuff here for backend!
-        // await fetch("http://localhost:5001/profiles/add", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "application/json", 
-        //   },
-        //   body: JSON.stringify(newEntry),
-        // })
-        // .catch(error => {
-        //   window.alert(error);
-        //   return;
-        // });
+    newEntry.UID = getUID(); 
+    console.log("this is the form", newEntry)
 
     //Create profile with all elements
     await fetch("http://localhost:5001/profiles/add", {
