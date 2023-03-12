@@ -53,7 +53,8 @@ export default function Create() {
             id="number"
             value={form.number}
             required
-            maxLength="100"
+            maxLength="6"
+            pattern="[A-Z][A-Z]?\d{1,4}$"
             onChange={(e) => updateForm({ number: e.target.value })}
           />
         </div>
