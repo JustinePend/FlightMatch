@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
+var currUID=0;
+
+export function getUID(){
+  return currUID;
+}
+
 export default function Login() {
   const [form, setForm] = useState({
     UID: "",
@@ -24,10 +30,13 @@ export default function Login() {
     document.cookie = form.UID;
     console.log(document.cookie);
 
+    currUID = form.UID;
+
     //create cookie with UID
     setForm({ UID: ""});
     
-
+    
+    
     navigate("/profile");
   }
 

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import {getUID} from "./login.js";
+
 
 export default function Profile() {
   const [form, setForm] = useState({
@@ -24,7 +26,7 @@ export default function Profile() {
     
     console.log(document.cookie);
     const newEntry = { ...form };
-    
+    console.log("this is from calling getUID ", getUID());
     newEntry.UID = document.cookie
     console.log(form.UID)
     console.log(newEntry)
