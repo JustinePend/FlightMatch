@@ -16,9 +16,27 @@ const ObjectId = require("mongodb").ObjectId;
 arrivingRoutes.route("/arriving").get(function (req, res) {
   
   let db_connect = dbo.getDb("flights");
-  const filter = {'date': {'$eq': '2023-03-17' }};
-  const sort = {'time': 1};
-  db_connect.collection("arriving").find(filter, sort).toArray( function (err, result) {
+  
+  let date_ob = new Date();
+
+// current date
+// adjust 0 before single digit date
+let day = ("0" + date_ob.getDate()).slice(-2);
+
+// current month
+let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+
+// current year
+let year = date_ob.getFullYear();
+
+// prints date in YYYY-MM-DD format
+curr_date = year + "-" + month + "-" + day;
+
+  
+
+  const filter = {'date': {'$gt': curr_date }};
+  const sortf = {date: 1};
+  db_connect.collection("arriving").find(filter).sort(sortf).toArray( function (err, result) {
       if (err) throw err;
       res.json(result);
     });
