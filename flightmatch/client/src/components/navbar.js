@@ -32,9 +32,9 @@ export default function Navbar() {
                 Profile {document.cookie}
               </NavLink>
             </li>
-            <li className="groups">
-              <NavLink className="nav-link" to="/">
-                View Groups
+            <li className="flights">
+              <NavLink className="nav-link" to="/flights">
+                My Flights
               </NavLink>
             </li>
             <li className="about">

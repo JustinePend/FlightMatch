@@ -52,11 +52,11 @@ export default function Login() {
             className="form-control"
             id="UID"
             value={form.UID}
-            requried
             maxLength="9"
             pattern="\d*"
             title="UID must contain only integers"
             onChange={(e) => updateForm({ UID: e.target.value })}
+            required="true"
           />
         </div>
         <div className="form-group">

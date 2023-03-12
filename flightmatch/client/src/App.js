@@ -10,6 +10,7 @@ import Edit from "./components/edit";
 import Create from "./components/create";
 import Login from "./components/login";
 import Profile from "./components/profile";
+import Flights from "./components/flights";
 
 var curUID;
 
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/create" element={<Create />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/flights" element={<Flights />} />
       </Routes>
       </div>
     </div>

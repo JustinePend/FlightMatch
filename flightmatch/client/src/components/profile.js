@@ -73,7 +73,7 @@ export default function Profile() {
             id="name"
             value={form.name}
             maxLength="30"
-            required
+            
             onChange={(e) => updateForm({ name: e.target.value })}
           />
         </div>
@@ -95,7 +95,7 @@ export default function Profile() {
             type="phone"
             className="form-control"
             id="tel"
-            required
+            
             maxLength="15"
             value={form.phone}
             onChange={(e) => updateForm({ phone: e.target.value })}
