@@ -65,6 +65,7 @@ export default function Create() {
             className="form-control"
             id="date"
             value={form.date}
+            required
             onChange={(e) => updateForm({ date: e.target.value })}
           />
         </div>
@@ -75,6 +76,7 @@ export default function Create() {
             className="form-control"
             id="time"
             value={form.time}
+            required
             onChange={(e) => updateForm({ time: e.target.value })}
           />
         </div>
