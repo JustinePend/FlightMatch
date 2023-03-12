@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
+var currUID=0;
+
+export function getUID(){
+  return currUID;
+}
+
 export default function Login() {
   const [form, setForm] = useState({
     UID: "",
@@ -21,21 +27,17 @@ export default function Login() {
     // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
 
-    //TODO: probably have to change stuff here for backend!
-    await fetch("http://localhost:5001/arriving/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", 
-      },
-      body: JSON.stringify(newEntry),
-    })
-    .catch(error => {
-      window.alert(error);
-      return;
-    });
+    document.cookie = form.UID;
+    console.log(document.cookie);
 
+    currUID = form.UID;
+
+    //create cookie with UID
     setForm({ UID: ""});
-    navigate("/");
+    
+    
+    
+    navigate("/profile");
   }
 
   // This following section will display the form that takes the input from the user.
@@ -50,6 +52,7 @@ export default function Login() {
             className="form-control"
             id="UID"
             value={form.UID}
+            requried
             maxLength="9"
             pattern="\d*"
             title="UID must contain only integers"

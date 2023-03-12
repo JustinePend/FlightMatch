@@ -1,9 +1,9 @@
 const express = require("express");
 
-// profiles is an instance of the express router.
+// profilesRoutes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /profiles.
-const profiles = express.Router();
+const profilesRoutes = express.Router();
 
 // This will help us connect to the database
 const dbo = require("../db/conn");
@@ -12,8 +12,8 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 
-// This section will help you get a list of all the profiles flights.
-profiles.route("/profiles").get(function (req, res) {
+// This section will help you get a list of all the profiles.
+profilesRoutes.route("/profiles").get(function (req, res) {
   let db_connect = dbo.getDb("flights");
   db_connect
     .collection("profiles")
@@ -24,8 +24,8 @@ profiles.route("/profiles").get(function (req, res) {
     });
 });
 
-// This section will help you get a single profiles flight by id
-profiles.route("/profiles/:id").get(function (req, res) {
+// This section will help you get a single profile by id
+profilesRoutes.route("/profiles/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   db_connect
@@ -36,13 +36,17 @@ profiles.route("/profiles/:id").get(function (req, res) {
       });
 });
 
-// This section will help you create a new profiles flight.
-profiles.route("/profiles/add").post(function (req, response) {
+
+
+
+// This section will help you create a new profile.
+profilesRoutes.route("/profiles/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
+    UID: req.body.UID,
     name: req.body.name,
-    uid: req.body.uid,
     email: req.body.email,
+    phone: req.body.phone,
   };
   db_connect.collection("profiles").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -50,15 +54,17 @@ profiles.route("/profiles/add").post(function (req, response) {
   });
 });
 
-// This section will help you update an profile by id.
-profiles.route("/update/:id").post(function (req, response) {
+
+
+// This section will help you update a profile by id.
+profilesRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
     $set: {
-        name: req.body.name,
-        uid: req.body.uid,
-        email: req.body.email,
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
     },
   };
   db_connect
@@ -70,8 +76,8 @@ profiles.route("/update/:id").post(function (req, response) {
     });
 });
 
-// This section will help you delete an profiles flight
-profiles.route("/:id").delete((req, response) => {
+// This section will help you delete a profile.
+profilesRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   db_connect.collection("profiles").deleteOne(myquery, function (err, obj) {
@@ -81,4 +87,4 @@ profiles.route("/:id").delete((req, response) => {
   });
 });
 
-module.exports = profiles;
+module.exports = profilesRoutes;

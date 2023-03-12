@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import {getUID} from "./login.js";
+
 
 export default function Profile() {
   const [form, setForm] = useState({
@@ -20,12 +22,29 @@ export default function Profile() {
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
-
     // When a post request is sent to the create url, we'll add a new record to the database.
+    
+    console.log(document.cookie);
     const newEntry = { ...form };
+    console.log("this is from calling getUID ", getUID());
+    newEntry.UID = document.cookie
+    console.log(form.UID)
+    console.log(newEntry)
+        // //TODO: probably have to change stuff here for backend!
+        // await fetch("http://localhost:5001/profiles/add", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json", 
+        //   },
+        //   body: JSON.stringify(newEntry),
+        // })
+        // .catch(error => {
+        //   window.alert(error);
+        //   return;
+        // });
 
-    //TODO: probably have to change stuff here for backend!
-    await fetch("http://localhost:5001/record/add", {
+    //Create profile with all elements
+    await fetch("http://localhost:5001/profiles/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json", 
@@ -37,8 +56,8 @@ export default function Profile() {
       return;
     });
 
-    setForm({ name: ""});
-    navigate("/");
+    setForm({ UID: "", phone:"", email: "", name: ""});
+    navigate("/"); 
   }
 
   // This following section will display the form that takes the input from the user.
@@ -53,6 +72,7 @@ export default function Profile() {
             className="form-control"
             id="name"
             value={form.name}
+            maxLength="30"
             required
             onChange={(e) => updateForm({ name: e.target.value })}
           />
@@ -63,7 +83,9 @@ export default function Profile() {
             type="email"
             className="form-control"
             id="email"
+            requried
             value={form.email}
+            maxLength="254"
             onChange={(e) => updateForm({ email: e.target.value })}
           />
         </div>
@@ -73,6 +95,8 @@ export default function Profile() {
             type="phone"
             className="form-control"
             id="tel"
+            required
+            maxLength="15"
             value={form.phone}
             onChange={(e) => updateForm({ phone: e.target.value })}
           />
