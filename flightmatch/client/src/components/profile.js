@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import {getUID} from "./login.js";
 
+
 export default function Profile() {
   useEffect(()=>{
     getProfile();
@@ -43,6 +44,7 @@ export default function Profile() {
       window.alert(error);
       return;
     });
+
     setForm({ UID: "", phone:"", email: "", name: ""});
     navigate("/"); 
   }

@@ -8,9 +8,10 @@ import Navbar from "./components/navbar";
 import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
-import Login, { getUID } from "./components/login";
+import Login from "./components/login";
 import About from "./components/about";
 import Profile from "./components/profile";
+
 
 const App = () => {
   return (
@@ -18,7 +19,9 @@ const App = () => {
       <Navbar />
       <div style={{ margin: 20 }}>
       <Routes>
-        <Route exact path="/" element={<RecordList />} />
+      <Route exact path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/recordList" element={<RecordList />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/create" element={<Create />} />
         
