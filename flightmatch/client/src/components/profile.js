@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 
-export default function DisplayProfile() {
+export default function Profile() {
   const [form, setForm] = useState({
-    NAME: "", //need to set name somewhere in signup or login
+    UID: "",
+    name: "", //need to set name somewhere in signup or login
+    email: "", 
+    phone: "",
   });
   const navigate = useNavigate();
 
@@ -34,32 +37,50 @@ export default function DisplayProfile() {
       return;
     });
 
-    setForm({ UID: ""});
+    setForm({ name: ""});
     navigate("/");
   }
 
   // This following section will display the form that takes the input from the user.
   return (
     <div>
-      <h3>NAME</h3>
+      <h3>Profile</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="UID">UID</label>
+          <label htmlFor="name">Name</label>
           <input
-            type="number"
+            type="text"
             className="form-control"
-            id="UID"
-            value={form.UID}
+            id="name"
+            value={form.name}
             required
-            minlength="9"
-            maxlength="9"
-            onChange={(e) => updateForm({ UID: e.target.value })}
+            onChange={(e) => updateForm({ name: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            value={form.email}
+            onChange={(e) => updateForm({ email: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="phone">Phone Number</label>
+          <input
+            type="phone"
+            className="form-control"
+            id="tel"
+            value={form.phone}
+            onChange={(e) => updateForm({ phone: e.target.value })}
           />
         </div>
         <div className="form-group">
           <input
             type="submit"
-            value="Sign In"
+            value="Update Profile"
             className="btn btn-primary"
           />
         </div>

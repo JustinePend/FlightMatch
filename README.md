@@ -6,7 +6,8 @@ Instructions for running server:
 create a file called config.env with the following and put it into the flightmatch/server folder
 
 ATLAS_URI=mongodb+srv://<user>:<password>@cluster0.lgu1nqk.mongodb.net/?retryWrites=true&w=majority
-PORT=5000
+
+PORT=5001
 
 You can access your username and password by logging in to the MongoDB Flight Match project page at this website: https://www.mongodb.com/cloud 
 

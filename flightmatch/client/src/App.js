@@ -9,7 +9,11 @@ import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
 import Login from "./components/login";
+<<<<<<< HEAD
 import About from "./components/about";
+=======
+import Profile from "./components/profile";
+>>>>>>> origin/request
 
 const App = () => {
   return (
@@ -21,7 +25,11 @@ const App = () => {
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/create" element={<Create />} />
         <Route path="/login" element={<Login />} />
+<<<<<<< HEAD
         <Route path="/about" element={<About />} />
+=======
+        <Route path="/profile" element={<Profile />} />
+>>>>>>> origin/request
       </Routes>
       </div>
     </div>

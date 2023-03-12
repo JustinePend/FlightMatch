@@ -1,9 +1,9 @@
 const express = require("express");
 
-// arrivingRoutes is an instance of the express router.
+// profilesRoutes is an instance of the express router.
 // We use it to define our routes.
-// The router will be added as a middleware and will take control of requests starting with path /arriving.
-const arrivingRoutes = express.Router();
+// The router will be added as a middleware and will take control of requests starting with path /profiles.
+const profilesRoutes = express.Router();
 
 // This will help us connect to the database
 const dbo = require("../db/conn");
@@ -12,11 +12,11 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 
-// This section will help you get a list of all the arriving flights.
-arrivingRoutes.route("/arriving").get(function (req, res) {
+// This section will help you get a list of all the profiles.
+profilesRoutes.route("/profiles").get(function (req, res) {
   let db_connect = dbo.getDb("flights");
   db_connect
-    .collection("arriving")
+    .collection("profiles")
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
@@ -24,47 +24,45 @@ arrivingRoutes.route("/arriving").get(function (req, res) {
     });
 });
 
-// This section will help you get a single arriving flight by id
-arrivingRoutes.route("/arriving/:id").get(function (req, res) {
+// This section will help you get a single profile by id
+profilesRoutes.route("/profiles/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   db_connect
-      .collection("arriving")
+      .collection("profiles")
       .findOne(myquery, function (err, result) {
         if (err) throw err;
         res.json(result);
       });
 });
 
-// This section will help you create a new arriving flight.
-arrivingRoutes.route("/arriving/add").post(function (req, response) {
+// This section will help you create a new profile.
+profilesRoutes.route("/profiles/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
     number: req.body.number,
-    date: req.body.date,
     time: req.body.time,
     baggage: req.body.baggage,
   };
-  db_connect.collection("arriving").insertOne(myobj, function (err, res) {
+  db_connect.collection("profiles").insertOne(myobj, function (err, res) {
     if (err) throw err;
     response.json(res);
   });
 });
 
-// This section will help you update an arriving flight by id.
-arrivingRoutes.route("/update/:id").post(function (req, response) {
+// This section will help you update a profile by id.
+profilesRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
     $set: {
       number: req.body.number,
-      date: req.body.date,
       time: req.body.time,
       baggage: req.body.baggage,
     },
   };
   db_connect
-    .collection("arriving")
+    .collection("profiles")
     .updateOne(myquery, newvalues, function (err, res) {
       if (err) throw err;
       console.log("1 document updated");
@@ -72,15 +70,15 @@ arrivingRoutes.route("/update/:id").post(function (req, response) {
     });
 });
 
-// This section will help you delete an arriving flight
-arrivingRoutes.route("/:id").delete((req, response) => {
+// This section will help you delete a profile.
+profilesRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId( req.params.id )};
-  db_connect.collection("arriving").deleteOne(myquery, function (err, obj) {
+  db_connect.collection("profiles").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");
     response.json(obj);
   });
 });
 
-module.exports = arrivingRoutes;
+module.exports = profilesRoutes;

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const Record = (props) => (
   <tr>
     <td>{props.record.number}</td>
+    <td>{props.record.date}</td>
     <td>{props.record.time}</td>
     <td>{props.record.baggage}</td>
     <td>
@@ -15,6 +16,9 @@ const Record = (props) => (
       >
         Delete
       </button>
+      <button className="btn btn-link">
+        Request Match
+      </button>
     </td>
   </tr>
 );
@@ -25,7 +29,7 @@ export default function RecordList() {
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`http://localhost:5000/arriving/`);
+      const response = await fetch(`http://localhost:5001/arriving/`);
 
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
@@ -44,7 +48,7 @@ export default function RecordList() {
 
   // This method will delete a record
   async function deleteRecord(id) {
-    await fetch(`http://localhost:5000/${id}`, {
+    await fetch(`http://localhost:5001/${id}`, {
       method: "DELETE"
     });
 

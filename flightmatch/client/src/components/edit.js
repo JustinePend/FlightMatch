@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router";
 export default function Edit() {
   const [form, setForm] = useState({
     number: "",
+    date: "",
     time: "",
     baggage: "",
     records: [],
@@ -14,7 +15,7 @@ export default function Edit() {
   useEffect(() => {
     async function fetchData() {
       const id = params.id.toString();
-      const response = await fetch(`http://localhost:5000/arriving/${params.id.toString()}`);
+      const response = await fetch(`http://localhost:5001/arriving/${params.id.toString()}`);
 
       if (!response.ok) {
         const message = `An error has occured: ${response.statusText}`;
@@ -24,7 +25,7 @@ export default function Edit() {
 
       const record = await response.json();
       if (!record) {
-        window.alert(`Arriving fligh with id ${id} not found`);
+        window.alert(`Arriving flight with id ${id} not found`);
         navigate("/");
         return;
       }
@@ -48,12 +49,13 @@ export default function Edit() {
     e.preventDefault();
     const editedFlight = {
       number: form.number,
+      date: form.date,
       time: form.time,
       baggage: form.baggage,
     };
 
     // This will send a post request to update the data in the database.
-    await fetch(`http://localhost:5000/update/${params.id}`, {
+    await fetch(`http://localhost:5001/update/${params.id}`, {
       method: "POST",
       body: JSON.stringify(editedFlight),
       headers: {
@@ -70,7 +72,7 @@ export default function Edit() {
       <h3>Update Record</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Number: </label>
+          <label htmlFor="name">Flight Number: </label>
           <input
             type="text"
             className="form-control"
@@ -80,7 +82,17 @@ export default function Edit() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="time">Time: </label>
+          <label htmlFor="date">Arrival Date: </label>
+          <input
+            type="text"
+            className="form-control"
+            id="date"
+            value={form.date}
+            onChange={(e) => updateForm({ date: e.target.value })}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="time">Arrival Time: </label>
           <input
             type="text"
             className="form-control"
