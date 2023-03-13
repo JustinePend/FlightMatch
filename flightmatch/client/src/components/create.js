@@ -78,7 +78,7 @@ export default function Create() {
         <div>
           <DatePicker 
             value={value} 
-            onChange={change} 
+            onChange={(e) => updateForm({ number: e.target.value })}
             required
             minDate={new Date()}
             maxDate={new Date(curr_date_1)}
