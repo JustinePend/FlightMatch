@@ -20,7 +20,7 @@ export default function Create() {
     });
   }
 
-  const [value, onChange] = useState(new Date());
+  const [value, change] = useState(new Date());
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
@@ -46,20 +46,11 @@ export default function Create() {
   }
 
   let date_ob = new Date();
-
-  // current date
-  // adjust 0 before single digit date
   let date = ("0" + date_ob.getDate()).slice(-2);
-  
-  // current month
   let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-  
-  // current year
-  let year = date_ob.getFullYear();
-  
-  // prints date in YYYY-MM-DD format
-  let curr_date=year + "-" + month + "-" + date;
-
+  let year = (date_ob.getFullYear() + 1);
+  let curr_date_1=year + "-" + month + "-" + date;
+  //Max time one year in advance
   // const current_date = new Date().toLocaleDateString();  // This following section will display the form that takes the input from the user.
   // const now = new Date();
 
@@ -86,11 +77,11 @@ export default function Create() {
         
         <div>
           <DatePicker 
-            onChange={onChange} 
             value={value} 
+            onChange={change} 
             required
-            minDate={curr_date}
-            maxDate={"2023-06-02"}
+            minDate={new Date()}
+            maxDate={new Date(curr_date_1)}
           />
 
         </div>
