@@ -19,6 +19,49 @@ export default function Profile() {
     });
   }
 
+
+  async function createProfile(profile){
+    await fetch("http://localhost:5001/profiles/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify(profile),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+  }
+
+  // async function getProfile(uid){
+  //   const xd=(await fetch('http://localhost:5001/profiles/${uid}')
+  //   .catch(error => {
+  //     window.alert(error);
+  //     return;
+  //   }));
+  //   return xd;
+  // }
+
+  async function getProfile(uid){
+    var x;
+    await fetch("http://localhost:5001/profiles/getUID", {
+      //replace with get id from UID
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify({UID: uid})
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      x=data._id;
+    });
+    return x;
+  }
+
+
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
@@ -30,17 +73,24 @@ export default function Profile() {
     console.log("this is the form", newEntry)
 
     //Create profile with all elements
-    await fetch("http://localhost:5001/profiles/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", 
-      },
-      body: JSON.stringify(newEntry),
-    })
-    .catch(error => {
-      window.alert(error);
-      return;
-    });
+    
+    createProfile(newEntry);
+    // await fetch("http://localhost:5001/profiles/" + currUID, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json", 
+    //   },
+    //   body: JSON.stringify(newEntry),
+    // })
+    // .catch(error => {
+    //   window.alert(error);
+    //   return;
+    // });
+    
+    console.log(getProfile(getUID()));
+    
+
+
 
     setForm({ UID: "", phone:"", email: "", name: ""});
     navigate("/"); 
