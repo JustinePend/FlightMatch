@@ -40,6 +40,7 @@ export default function RecordList() {
       }
 
       const records = await response.json();
+      //const newRecords = records.filter((el) => el.date === new Date());
       setRecords(records);
     }
 
@@ -58,8 +59,16 @@ export default function RecordList() {
     setRecords(newRecords);
   }
 
+
   //Variables for dates for list of flights
-  const [value, change] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (val) => {
+    setSelectedDate(val);
+
+    const newRecords = records.filter((el) => el.date === val);
+    setRecords(newRecords);
+  };
 
   let date_ob = new Date();
   let day = ("0" + date_ob.getDate()).slice(-2);
@@ -68,17 +77,26 @@ export default function RecordList() {
   let curr_date_1 = year + "-" + month + "-" + day;
   //const [filter, setFilter] = useState (new Date());
   //{'date': {'$gt': curr_date }}
+  //.filter((flight) => flight.date === val)
 
   // This method will map out the records on the table
-  function recordList(val) {
-    return records.map((record) => (
-          <Record
-            record={record}
-            deleteRecord={() => deleteRecord(record._id)}
-            key={record._id}
-          />
-        ));
-    }
+  function recordList() {
+    
+    const filteredFlights = records.filter(
+      (flight) => flight.date === selectedDate.toISOString().slice(0, 10)
+    );
+
+    return filteredFlights.map((record) => {
+      return (
+        <Record
+          record={record}
+          deleteRecord={() => deleteRecord(record._id)}
+          key={record._id}
+        />
+      );
+    });
+  }
+
 
   // This following section will display the table with the records of individuals.
   return (
@@ -88,12 +106,11 @@ export default function RecordList() {
         <label htmlFor="date">Search For Date of Flight:          
         </label>
         <DatePicker 
-          value={value} 
-          onChange={change}
+          value={selectedDate} 
+          onChange={handleDateChange}
           minDate={new Date()}
           maxDate={new Date(curr_date_1)}
         />
-
       </div>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
@@ -105,7 +122,7 @@ export default function RecordList() {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>{recordList(value)}</tbody>
+        <tbody>{recordList()}</tbody>
       </table>
     </div>
   );
