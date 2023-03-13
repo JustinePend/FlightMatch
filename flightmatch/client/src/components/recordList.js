@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import DatePicker from "react-date-picker"
 
 const Record = (props) => (
   <tr>
@@ -57,7 +58,7 @@ export default function RecordList() {
   }
 
   // This method will map out the records on the table
-  function recordList() {
+  function RecordList() {
     return records.map((record) => {
       return (
         <Record
@@ -67,11 +68,19 @@ export default function RecordList() {
         />
       );
     });
+
   }
+  const [value, onChange] = useState(new Date());
+
   // This following section will display the table with the records of individuals.
   return (
     <div>
       <h3>Flight List</h3>
+      <DatePicker 
+            onChange={onChange} 
+            value={value} />
+        
+
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
@@ -82,7 +91,7 @@ export default function RecordList() {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>{recordList()}</tbody>
+        <tbody>{RecordList()}</tbody>
       </table>
     </div>
   );
