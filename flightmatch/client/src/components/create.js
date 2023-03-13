@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import {getUID} from "./login.js";
 
 export default function Create() {
   const [form, setForm] = useState({
+    uid: "",
     number: "",
     date: "",
     time: "",
@@ -20,7 +22,7 @@ export default function Create() {
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
-
+    
     // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
 
@@ -36,8 +38,8 @@ export default function Create() {
       return;
     });
 
-    setForm({ number: "", date: "", time: "", baggage: "" });
-    navigate("/");
+    setForm({ uid: "", number: "", date: "", time: "", baggage: "" });
+    navigate("/recordList");
   }
 
   // This following section will display the form that takes the input from the user.
