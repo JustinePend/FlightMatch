@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
+import DatePicker from 'react-date-picker';
 
 const Record = (props) => (
   <tr>
@@ -56,22 +58,43 @@ export default function RecordList() {
     setRecords(newRecords);
   }
 
+  //Variables for dates for list of flights
+  const [value, change] = useState(new Date());
+
+  let date_ob = new Date();
+  let day = ("0" + date_ob.getDate()).slice(-2);
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+  let year = (date_ob.getFullYear()+1);
+  let curr_date_1 = year + "-" + month + "-" + day;
+  //const [filter, setFilter] = useState (new Date());
+  //{'date': {'$gt': curr_date }}
+
   // This method will map out the records on the table
-  function recordList() {
-    return records.map((record) => {
-      return (
-        <Record
-          record={record}
-          deleteRecord={() => deleteRecord(record._id)}
-          key={record._id}
-        />
-      );
-    });
-  }
+  function recordList(val) {
+    return records.map((record) => (
+          <Record
+            record={record}
+            deleteRecord={() => deleteRecord(record._id)}
+            key={record._id}
+          />
+        ));
+    }
+
   // This following section will display the table with the records of individuals.
   return (
     <div>
       <h3>Flight List</h3>
+      <div className="form-group">
+        <label htmlFor="date">Search For Date of Flight:          
+        </label>
+        <DatePicker 
+          value={value} 
+          onChange={change}
+          minDate={new Date()}
+          maxDate={new Date(curr_date_1)}
+        />
+
+      </div>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
@@ -82,7 +105,7 @@ export default function RecordList() {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>{recordList()}</tbody>
+        <tbody>{recordList(value)}</tbody>
       </table>
     </div>
   );
