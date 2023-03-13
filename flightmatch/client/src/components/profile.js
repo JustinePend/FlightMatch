@@ -57,6 +57,7 @@ export default function Profile() {
     .then((data) => {
       console.log(data);
       x=data._id;
+      console.log("this is x ", x)
     });
     return x;
   }
@@ -87,7 +88,7 @@ export default function Profile() {
     //   return;
     // });
     
-    console.log(getProfile(getUID()));
+    console.log("this is the return value of getProfile ", await getProfile(getUID()));
     
 
 
