@@ -20,7 +20,7 @@ export default function Create() {
     });
   }
 
-  const [value, change] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
@@ -54,6 +54,26 @@ export default function Create() {
   // const current_date = new Date().toLocaleDateString();  // This following section will display the form that takes the input from the user.
   // const now = new Date();
 
+  const handleDateChange = (e) => {
+    setSelectedDate(e);
+  };
+
+  // setSelectedDate(val);
+  // const newRecords = records.filter((el) => el.date === val);
+  // setRecords(newRecords);
+
+  //date picker display
+  // <div>
+  //   <DatePicker 
+  //   value={selectedDate} 
+  //   onChange={handleDateChange}
+  //   required
+  //   minDate={new Date()}
+  //   maxDate={new Date(curr_date_1)}
+  //   />
+  // </div>
+
+
   return (
     <div>
       <h3>Enter Flight Information</h3>
@@ -71,19 +91,21 @@ export default function Create() {
             onChange={(e) => updateForm({ number: e.target.value })}
           />
         </div>
-       <div className="form-group">
+       <div>
         <label htmlFor="date">Date of Arrival
         </label>
         
-        <div>
-          <DatePicker 
-            value={value} 
-            onChange={(e) => updateForm({ number: e.target.value })}
+        <div className="form-group">
+          <input
+            type="date"
+            className="form-control"
+            id="date"
+            value={form.date}
+            min={new Date().toISOString().slice(0, 10)}
+            max={new Date(curr_date_1).toISOString().slice(0, 10)}
             required
-            minDate={new Date()}
-            maxDate={new Date(curr_date_1)}
+            onChange={(e) => updateForm({ date: e.target.value })}
           />
-
         </div>
           
         </div>
