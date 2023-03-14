@@ -80,6 +80,7 @@ export default function Login() {
             id="UID"
             value={form.UID}
             requried
+            minLength="9"
             maxLength="9"
             pattern="\d*"
             title="UID must contain only integers"

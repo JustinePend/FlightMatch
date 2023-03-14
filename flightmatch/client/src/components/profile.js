@@ -86,14 +86,14 @@ export default function Profile() {
     //   window.alert(error);
     //   return;
     // });
-    
+    console.log("ive had enough but this is value of currUID ", getUID())
     console.log("this is the return value of getProfile ", await getProfile(getUID()));
     
 
 
 
     setForm({ UID: "", phone:"", email: "", name: ""});
-    navigate("/"); 
+    navigate("/recordList"); 
   }
 
   // This following section will display the form that takes the input from the user.
