@@ -79,6 +79,9 @@ export default function RecordList() {
   //{'date': {'$gt': curr_date }}
   //.filter((flight) => flight.date === val)
 
+  let yesterday = new Date ();
+  yesterday.setDate(yesterday.getDate() - 1);
+
   // This method will map out the records on the table
   function recordList() {
     
@@ -108,7 +111,7 @@ export default function RecordList() {
         <DatePicker 
           value={selectedDate} 
           onChange={handleDateChange}
-          minDate={new Date()}
+          minDate={new Date(yesterday)}
           maxDate={new Date(curr_date_1)}
         />
       </div>
