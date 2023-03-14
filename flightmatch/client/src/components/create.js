@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import {getUID} from "./login.js";
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -7,6 +8,7 @@ export default function Create() {
     date: "",
     time: "",
     baggage: "",
+    uid: "",
   });
   const navigate = useNavigate();
 
@@ -23,6 +25,9 @@ export default function Create() {
 
     // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
+    newEntry.uid = getUID(); 
+
+    console.log(newEntry);
 
     await fetch("http://localhost:5001/arriving/add", {
       method: "POST",
