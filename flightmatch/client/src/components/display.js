@@ -33,7 +33,7 @@ async function doeverything(flightid){
     var record = await flightdata.json();
     console.log("this is the flight data", record);
     
-    var profiledata = await getProfile(record.UID);
+    var profiledata = await getProfile(record.uid);
     console.log("this is the flight profile data", profiledata);
 }
 
