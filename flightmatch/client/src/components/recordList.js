@@ -60,9 +60,18 @@ export default function RecordList() {
   // This method will map out the records on the table
   function RecordList() {
     
-    const filteredFlights = records.filter(
+    let filteredFlights = records.filter(
       (flight) => flight.uid !== getUID()
     );
+      //The filter shows flights that don't match getUID
+
+    if (getUID() === 0)
+    {
+      filteredFlights = records.filter(
+        (flight) => flight.uid === -1
+      );
+    }
+    //Since no UID can be negative, this shows no flights
     
     console.log("THE UID is: ", getUID());
 
