@@ -102,30 +102,23 @@ export default function Edit() {
           />
         </div>
         <div className="form-group">
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="baggageOptions"
-              id="hasBaggage"
-              value="true"
-              checked={form.baggage === "true"}
+          <label htmlFor="baggage">Number of Bags</label>
+            <select
+              type="number"
+              className="form-control"
+              id="baggage"
+              value={form.baggage}
+              required
               onChange={(e) => updateForm({ baggage: e.target.value })}
-            />
-            <label htmlFor="hasBaggage" className="form-check-label">Baggage</label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="baggageOptions"
-              id="noBaggage"
-              value="false"
-              checked={form.baggage === "false"}
-              onChange={(e) => updateForm({ baggage: e.target.value })}
-            />
-            <label htmlFor="noBaggage" className="form-check-label">No Baggage</label>
-          </div>
+            >
+              <option value="">Select</option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5+">5+</option>   
+          </select>
         </div>
         <br />
 
