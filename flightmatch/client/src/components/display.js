@@ -16,7 +16,7 @@ async function getProfile(uid){
   .then((res) => res.json())
   .then((data) => {
     x=data;
-    console.log("this is x ", x)
+    //console.log("this is x ", x)
   });
   return x;
 }
@@ -27,14 +27,17 @@ async function getFlightID(flightID){
   return response;
 }
 
+var profiledata;
+
 async function doeverything(flightid){
-  console.log("this is the flightid", flightid);
+  //console.log("this is the flightid", flightid);
     var flightdata = await getFlightID(flightid);
     var record = await flightdata.json();
-    console.log("this is the flight data", record);
+    //console.log("this is the flight data", record);
     
-    var profiledata = await getProfile(record.uid);
-    console.log("this is the flight profile data", profiledata);
+    profiledata = await getProfile(record.uid);
+    //console.log("this is the flight profile data", profiledata);
+    return profiledata;
 }
 
 export default function Display() {
@@ -43,12 +46,13 @@ export default function Display() {
     const navigate = useNavigate();
     const flightid = params.id.toString();
     doeverything(flightid);
-
+    //console.log("got here");
+    console.log("this is the result of doeverything", profiledata);
     
     // This following section will display the form that takes input from the user to update the data.
     return (
       <h1>
-        Profile
+        Profile 
       </h1>
     );
   }
