@@ -4,7 +4,7 @@ import {getUID} from "./login.js";
 
 export default function Create() {
   const [form, setForm] = useState({
-    uid: "",
+    UID: getUID(),
     number: "",
     date: "",
     time: "",
@@ -38,7 +38,7 @@ export default function Create() {
       return;
     });
 
-    setForm({ uid: "", number: "", date: "", time: "", baggage: "" });
+    setForm({ UID: getUID(), number: "", date: "", time: "", baggage: "" });
     navigate("/recordList");
   }
 
