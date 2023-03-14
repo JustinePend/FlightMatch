@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import {getUID} from "./login.js";
+import {getUID} from "./login.js";
 
 export default function Create() {
   const [form, setForm] = useState({
@@ -8,6 +9,7 @@ export default function Create() {
     date: "",
     time: "",
     baggage: "",
+    uid: "",
     uid: "",
   });
   const navigate = useNavigate();
@@ -41,7 +43,7 @@ export default function Create() {
       return;
     });
 
-    setForm({ number: "", date: "", time: "", baggage: "" });
+    setForm({ number: "", date: "", time: "", baggage: "", uid: "", });
     navigate("/");
   }
 
