@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import {getUID} from "./login.js";
-import {getUID} from "./login.js";
 
 export default function Create() {
   const [form, setForm] = useState({
