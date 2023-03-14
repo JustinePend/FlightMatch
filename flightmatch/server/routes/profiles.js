@@ -25,9 +25,10 @@ profilesRoutes.route("/profiles").get(function (req, res) {
 });
 
 // This section will help you get a single profile by id
-profilesRoutes.route("/profiles/:id").get(function (req, res) {
+profilesRoutes.route("/profiles/getUID").post(function (req, res) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { "UID": req.body.UID};
+  console.log(myquery);
   db_connect
       .collection("profiles")
       .findOne(myquery, function (err, result) {
@@ -35,6 +36,10 @@ profilesRoutes.route("/profiles/:id").get(function (req, res) {
         res.json(result);
       });
 });
+
+
+
+
 
 
 // This section will help you create a new profile.

@@ -9,6 +9,7 @@ export default function Create() {
     date: "",
     time: "",
     baggage: "",
+    uid: "",
   });
   const navigate = useNavigate();
 
@@ -25,6 +26,9 @@ export default function Create() {
     
     // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
+    newEntry.uid = getUID(); 
+
+    console.log(newEntry);
 
     await fetch("http://localhost:5001/arriving/add", {
       method: "POST",
@@ -38,8 +42,8 @@ export default function Create() {
       return;
     });
 
-    setForm({ UID: getUID(), number: "", date: "", time: "", baggage: "" });
-    navigate("/recordList");
+    setForm({ number: "", date: "", time: "", baggage: "", uid: "", });
+    navigate("/");
   }
 
   // This following section will display the form that takes the input from the user.

@@ -26,6 +26,7 @@ run these commands:
 1. cd flightmatch
 2. cd client
 3. npm install
-4. npm start
+4. npm install react-date-picker
+5. npm start
 
 *Note- there may be an issue with deprecated packages, and you might need to run the command npm audit fix and/or npm audit fix --force to get rid of them. However, if there are 5-6 deprecated packages, don't worry about those, the program still works fine.
