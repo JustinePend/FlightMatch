@@ -3,6 +3,26 @@ import { useNavigate } from "react-router";
 
 var currUID=0;
 
+async function getProfile(uid){
+  var x;
+  await fetch("http://localhost:5001/profiles/getUID", {
+    //replace with get id from UID
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", 
+    },
+    body: JSON.stringify({UID: uid})
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    console.log("this is data", data);
+    if(data==null){
+      return null;
+    }else{x = data._id};
+  });
+  return x;
+}
+
 export function getUID(){ //Function to access UID variable
   return currUID;
 }
@@ -30,12 +50,21 @@ export default function Login() {
     //Set UID variable to accessed elsewhere
     currUID = form.UID;
 
+    let y = await getProfile(currUID);
+
+    console.log("this is the value of y ", y);
+
     //Clear Form
     setForm({ UID: ""});
     
+    if(y == null){
+      navigate("/profile");
+    }
+    else{
+      navigate("/recordList")
+    }
     
     
-    navigate("/profile");
   }
 
   // This following section will display the form that takes the input from the user.

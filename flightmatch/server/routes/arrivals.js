@@ -44,6 +44,7 @@ arrivingRoutes.route("/arriving/add").post(function (req, response) {
     date: req.body.date,
     time: req.body.time,
     baggage: req.body.baggage,
+    uid: req.body.uid,
   };
   db_connect.collection("arriving").insertOne(myobj, function (err, res) {
     if (err) throw err;

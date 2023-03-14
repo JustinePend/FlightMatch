@@ -43,7 +43,7 @@ export default function Profile() {
   //   return xd;
   // }
 
-  async function getProfile(uid){
+ async function getProfile(uid){
     var x;
     await fetch("http://localhost:5001/profiles/getUID", {
       //replace with get id from UID
@@ -55,7 +55,6 @@ export default function Profile() {
     })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       x=data._id;
       console.log("this is x ", x)
     });
