@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 //import {getUID} from "./login.js";
+
 
 
 async function getProfile(uid){
@@ -27,29 +28,71 @@ async function getFlightID(flightID){
   return response;
 }
 
-async function doeverything(flightid){
-  console.log("this is the flightid", flightid);
-    var flightdata = await getFlightID(flightid);
-    var record = await flightdata.json();
-    console.log("this is the flight data", record);
-    
-    var profiledata = await getProfile(record.UID);
-    console.log("this is the flight profile data", profiledata);
-}
+
+
+var profiledata;
+
+
+
 
 export default function Display() {
     
     const params = useParams();
     const navigate = useNavigate();
-    const flightid = params.id.toString();
-    doeverything(flightid);
+
+    const [profdata, setProf] = useState({
+      UID: "",
+      name: "",
+      email: "",
+      phone: "",
+    });
+
+
+    useEffect(() => {
+
+      async function Doeverything(flightid){
+
+        console.log("this is the flightid", flightid);
+          var flightdata = await getFlightID(flightid);
+          var record = await flightdata.json();
+          console.log("this is the flight data", record);
+          
+          profiledata = await getProfile(record.uid);
+          setProf(profiledata);
+
+          console.log("this is the flight profile data", profdata);
+          //return profiledata;
+      }
+      const flightid = params.id.toString();
+    Doeverything(flightid);
+
+    console.log("do everything pls work", profdata);
+    },[params.id, navigate]);
+
+
 
     
+
+    console.log("This is from do everything", profdata);
     // This following section will display the form that takes input from the user to update the data.
     return (
-      <h1>
-        Profile
-      </h1>
+      <div>
+        <h1>
+          Profile
+          <div>
+          name: {profdata.name}
+          </div>
+          <div>
+            email: {profdata.email}
+          </div>
+          <div>
+            phone number: {profdata.phone}
+          </div>
+          
+        </h1>
+          
+      </div>
+      
     );
   }
   
