@@ -4,7 +4,6 @@ import {getUID} from "./login.js";
 
 export default function Create() {
   const [form, setForm] = useState({
-    UID: getUID(),
     number: "",
     date: "",
     time: "",

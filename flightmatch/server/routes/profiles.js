@@ -113,16 +113,5 @@ profilesRoutes.route("/:id").delete((req, response) => {
 //   });
 // });
 
-//This section will help you get a profile by UID
-profilesRoutes.route("/display/:id").get(function (req, response) {
-  let db_connect = dbo.getDb();
-  let myquery = { UID: req.params.UID };
-  db_connect
-      .collection("profiles")
-      .findOne(myquery, function (err, result) {
-        if (err) throw err;
-        response.json(result);
-      });
-});
 
 module.exports = profilesRoutes;

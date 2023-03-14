@@ -40,7 +40,6 @@ arrivingRoutes.route("/arriving/:id").get(function (req, res) {
 arrivingRoutes.route("/arriving/add").post(function (req, response) {
   let db_connect = dbo.getDb();
   let myobj = {
-    UID: req.body.UID,
     number: req.body.number,
     date: req.body.date,
     time: req.body.time,
