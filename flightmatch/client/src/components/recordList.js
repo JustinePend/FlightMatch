@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DatePicker from "react-date-picker"
+import {getUID} from "./login.js";
 
 const Record = (props) => (
   <tr>
@@ -55,9 +56,17 @@ export default function RecordList() {
     setRecords(newRecords);
   }
 
+
   // This method will map out the records on the table
   function RecordList() {
-    return records.map((record) => {
+    
+    const filteredFlights = records.filter(
+      (flight) => flight.uid !== getUID()
+    );
+    
+    console.log("THE UID is: ", getUID());
+
+    return filteredFlights.map((record) => {
       return (
         <Record
           record={record}
