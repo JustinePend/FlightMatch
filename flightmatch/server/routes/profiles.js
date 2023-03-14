@@ -37,8 +37,6 @@ profilesRoutes.route("/profiles/:id").get(function (req, res) {
 });
 
 
-
-
 // This section will help you create a new profile.
 profilesRoutes.route("/profiles/add").post(function (req, response) {
   let db_connect = dbo.getDb();
@@ -85,6 +83,41 @@ profilesRoutes.route("/:id").delete((req, response) => {
     console.log("1 document deleted");
     response.json(obj);
   });
+});
+
+// // This section will help you get a single arriving flight by id
+// arrivingRoutes.route("/arriving/:id").get(function (req, res) {
+//   let db_connect = dbo.getDb();
+//   let myquery = { _id: ObjectId( req.params.id )};
+//   db_connect
+//       .collection("arriving")
+//       .findOne(myquery, function (err, result) {
+//         if (err) throw err;
+//         res.json(result);
+//       });
+// });
+
+// This section will help you delete an arriving flight
+// arrivingRoutes.route("/:id").delete((req, response) => {
+//   let db_connect = dbo.getDb();
+//   let myquery = { _id: ObjectId( req.params.id )};
+//   db_connect.collection("arriving").deleteOne(myquery, function (err, obj) {
+//     if (err) throw err;
+//     console.log("1 document deleted");
+//     response.json(obj);
+//   });
+// });
+
+//This section will help you get a profile by UID
+profilesRoutes.route("/display/:id").get(function (req, response) {
+  let db_connect = dbo.getDb();
+  let myquery = { UID: req.params.UID };
+  db_connect
+      .collection("profiles")
+      .findOne(myquery, function (err, result) {
+        if (err) throw err;
+        response.json(result);
+      });
 });
 
 module.exports = profilesRoutes;
