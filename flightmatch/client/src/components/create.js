@@ -10,7 +10,6 @@ export default function Create() {
     time: "",
     baggage: "",
     uid: "",
-    uid: "",
   });
   const navigate = useNavigate();
 
