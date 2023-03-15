@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+
 //import {getUID} from "./login.js";
-
-
 
 async function getProfile(uid){
   var x;
@@ -28,12 +27,8 @@ async function getFlightID(flightID){
   return response;
 }
 
-
-
 var profiledata;
-
-
-
+var record;
 
 export default function Display() {
     
@@ -47,6 +42,13 @@ export default function Display() {
       phone: "",
     });
 
+    const [fdata, setFdata] = useState({
+      number: "",
+      date: "",
+      time: "",
+      baggage: "",
+      uid: "",
+    });
 
     useEffect(() => {
 
@@ -54,7 +56,8 @@ export default function Display() {
 
         console.log("this is the flightid", flightid);
           var flightdata = await getFlightID(flightid);
-          var record = await flightdata.json();
+          record = await flightdata.json();
+          setFdata(record);
           console.log("this is the flight data", record);
           
           profiledata = await getProfile(record.uid);
@@ -70,27 +73,45 @@ export default function Display() {
     },[params.id, navigate]);
 
 
-
-    
-
     console.log("This is from do everything", profdata);
     // This following section will display the form that takes input from the user to update the data.
     return (
       <div>
         <h1>
           Profile
-          <div>
-          name: {profdata.name}
-          </div>
-          <div>
-            email: {profdata.email}
-          </div>
-          <div>
-            phone number: {profdata.phone}
-          </div>
+          <h3>
+            <div>
+              Name: {profdata.name}
+            </div>
+            <div>
+              Email: {profdata.email}
+            </div>
+            <div>
+              Phone Number {profdata.phone}
+            </div>
+          </h3>
           
         </h1>
-          
+        <body>
+          <table className="table table-striped" style={{ marginTop: 20 }}>
+            <thead>
+              <tr>
+                <th>Flight Number</th>
+                <th>Arrival Date</th>
+                <th>Arrival Time</th>
+                <th>Baggage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> {fdata.number}</td>
+                <td> {fdata.date}</td>
+                <td> {fdata.time}</td>
+                <td> {fdata.baggage}</td>
+              </tr>
+            </tbody>
+          </table>
+        </body>
       </div>
       
     );

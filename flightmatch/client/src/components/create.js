@@ -42,7 +42,7 @@ export default function Create() {
     });
 
     setForm({ number: "", date: "", time: "", baggage: "", uid: "", });
-    navigate("/");
+    navigate("/recordList");
   }
 
   // This following section will display the form that takes the input from the user.
