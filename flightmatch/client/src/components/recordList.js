@@ -83,7 +83,7 @@ export default function RecordList() {
   yesterday.setDate(yesterday.getDate() - 1);
 
   // This method will map out the records on the table
-  function recordList() {
+  function RecordList() {
     
     const filteredFlights = records.filter(
       (flight) => flight.date === selectedDate.toISOString().slice(0, 10)
