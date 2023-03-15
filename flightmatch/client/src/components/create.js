@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import DatePicker from 'react-date-picker';
+
 import {getUID} from "./login.js";
 
 export default function Create() {
+  
   const [form, setForm] = useState({
     number: "",
     date: "",
@@ -19,6 +22,7 @@ export default function Create() {
     });
   }
 
+  const [selectedDate, setSelectedDate] = useState(new Date());
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
@@ -43,9 +47,38 @@ export default function Create() {
 
     setForm({ number: "", date: "", time: "", baggage: "", uid: "", });
     navigate("/");
+
   }
 
-  // This following section will display the form that takes the input from the user.
+  let date_ob = new Date();
+  let date = ("0" + date_ob.getDate()).slice(-2);
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+  let year = (date_ob.getFullYear() + 1);
+  let curr_date_1=year + "-" + month + "-" + date;
+  //Max time one year in advance
+  // const current_date = new Date().toLocaleDateString();  // This following section will display the form that takes the input from the user.
+  // const now = new Date();
+
+  const handleDateChange = (e) => {
+    setSelectedDate(e);
+  };
+
+  // setSelectedDate(val);
+  // const newRecords = records.filter((el) => el.date === val);
+  // setRecords(newRecords);
+
+  //date picker display
+  // <div>
+  //   <DatePicker 
+  //   value={selectedDate} 
+  //   onChange={handleDateChange}
+  //   required
+  //   minDate={new Date()}
+  //   maxDate={new Date(curr_date_1)}
+  //   />
+  // </div>
+
+
   return (
     <div>
       <h3>Enter Flight Information</h3>
@@ -63,16 +96,23 @@ export default function Create() {
             onChange={(e) => updateForm({ number: e.target.value })}
           />
         </div>
+       <div>
+        <label htmlFor="date">Date of Arrival
+        </label>
+        
         <div className="form-group">
-        <label htmlFor="date">Date of Arrival</label>
           <input
             type="date"
             className="form-control"
             id="date"
             value={form.date}
+            min={new Date().toISOString().slice(0, 10)}
+            max={new Date(curr_date_1).toISOString().slice(0, 10)}
             required
             onChange={(e) => updateForm({ date: e.target.value })}
           />
+        </div>
+          
         </div>
         <div className="form-group">
           <label htmlFor="time">Time of Arrival</label>
