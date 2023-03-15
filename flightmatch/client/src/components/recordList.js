@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import DatePicker from "react-date-picker"
+import { useNavigate } from "react-router";
+import DatePicker from 'react-date-picker';
 
 const Record = (props) => (
   <tr>
@@ -39,6 +40,7 @@ export default function RecordList() {
       }
 
       const records = await response.json();
+      //const newRecords = records.filter((el) => el.date === new Date());
       setRecords(records);
     }
 
@@ -57,9 +59,37 @@ export default function RecordList() {
     setRecords(newRecords);
   }
 
+
+  //Variables for dates for list of flights
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const handleDateChange = (val) => {
+    setSelectedDate(val);
+
+    const newRecords = records.filter((el) => el.date === val);
+    setRecords(newRecords);
+  };
+
+  let date_ob = new Date();
+  let day = ("0" + date_ob.getDate()).slice(-2);
+  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
+  let year = (date_ob.getFullYear()+1);
+  let curr_date_1 = year + "-" + month + "-" + day;
+  //const [filter, setFilter] = useState (new Date());
+  //{'date': {'$gt': curr_date }}
+  //.filter((flight) => flight.date === val)
+
+  let yesterday = new Date ();
+  yesterday.setDate(yesterday.getDate() - 1);
+
   // This method will map out the records on the table
-  function RecordList() {
-    return records.map((record) => {
+  function recordList() {
+    
+    const filteredFlights = records.filter(
+      (flight) => flight.date === selectedDate.toISOString().slice(0, 10)
+    );
+
+    return filteredFlights.map((record) => {
       return (
         <Record
           record={record}
@@ -70,17 +100,22 @@ export default function RecordList() {
     });
 
   }
-  const [value, onChange] = useState(new Date());
+
 
   // This following section will display the table with the records of individuals.
   return (
     <div>
       <h3>Flight List</h3>
-      <DatePicker 
-            onChange={onChange} 
-            value={value} />
-        
-
+      <div className="form-group">
+        <label htmlFor="date">Search For Date of Flight:          
+        </label>
+        <DatePicker 
+          value={selectedDate} 
+          onChange={handleDateChange}
+          minDate={new Date(yesterday)}
+          maxDate={new Date(curr_date_1)}
+        />
+      </div>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>

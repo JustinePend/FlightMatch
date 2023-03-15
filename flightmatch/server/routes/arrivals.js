@@ -12,17 +12,23 @@ const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 
 
-// This section will help you get a list of all the arriving flights.
+// // This section will help you get a list of all the arriving flights.
 arrivingRoutes.route("/arriving").get(function (req, res) {
+  
   let db_connect = dbo.getDb("flights");
-  db_connect
-    .collection("arriving")
-    .find({})
-    .toArray(function (err, result) {
+
+  const sortf = {time: 1};
+
+  db_connect.collection("arriving")
+   .find({})
+   .sort(sortf)
+   .toArray( function (err, result) {
       if (err) throw err;
       res.json(result);
     });
-});
+  });
+
+
 
 // This section will help you get a single arriving flight by id
 arrivingRoutes.route("/arriving/:id").get(function (req, res) {
