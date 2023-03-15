@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import DatePicker from "react-date-picker"
 import {getUID} from "./login.js";
@@ -25,6 +26,7 @@ const Record = (props) => (
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);
+  const navigate = useNavigate();
 
   // This method fetches the records from the database.
   useEffect(() => {
