@@ -22,7 +22,6 @@ export default function Create() {
     });
   }
 
-  const [selectedDate, setSelectedDate] = useState(new Date());
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
@@ -59,10 +58,12 @@ export default function Create() {
   // const current_date = new Date().toLocaleDateString();  // This following section will display the form that takes the input from the user.
   // const now = new Date();
 
-  const handleDateChange = (e) => {
-    setSelectedDate(e);
-  };
-
+  //Stash of unused date-picker implementation for date-lim
+  
+  // const [selectedDate, setSelectedDate] = useState(new Date());
+  // const handleDateChange = (e) => {
+  //   setSelectedDate(e);
+  // };
   // setSelectedDate(val);
   // const newRecords = records.filter((el) => el.date === val);
   // setRecords(newRecords);
