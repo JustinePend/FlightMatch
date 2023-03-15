@@ -70,7 +70,8 @@ export default function Login() {
   // This following section will display the form that takes the input from the user.
   return (
     <div>
-      <h3>Log in with UCLA UID</h3>
+      <h1> Welcome to UCLA Flight Match- Log in to Get Started </h1>
+      <h3>Please Log in with UCLA UID</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="UID">UID</label>

@@ -96,6 +96,16 @@ export default function Profile() {
     navigate("/recordList"); 
   }
 
+  if (getUID() === 0)
+  {
+    return (
+      <div>
+        <h3> Invalid Credentials </h3>
+
+      </div>
+    );
+  }
+
   // This following section will display the form that takes the input from the user.
   return (
     <div>

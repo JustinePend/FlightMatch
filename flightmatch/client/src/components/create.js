@@ -46,6 +46,15 @@ export default function Create() {
   }
 
   // This following section will display the form that takes the input from the user.
+  
+  if (getUID() === 0)
+  {
+    return (
+      <div>
+        <h3> Invalid Credentials </h3>
+      </div>
+    );
+  }
   return (
     <div>
       <h3>Enter Flight Information</h3>

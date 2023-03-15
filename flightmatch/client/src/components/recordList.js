@@ -88,6 +88,15 @@ export default function RecordList() {
   }
   const [value, onChange] = useState(new Date());
 
+  if (getUID() === 0)
+  {
+    return (
+      <div>
+        <h3> Invalid Credentials </h3>
+      </div>
+    );
+  }
+
   // This following section will display the table with the records of individuals.
   return (
     <div>
