@@ -92,7 +92,9 @@ export default function RecordList() {
   {
     return (
       <div>
-        <h3> Invalid Credentials </h3>
+        <h3> Invalid Credentials. Must be Logged in to view this page </h3>
+        <h3> Use the Navigation Bar or Press the Button to Login</h3>
+        <button onClick={() => navigate("/")}>Go to Login</button>
       </div>
     );
   }
