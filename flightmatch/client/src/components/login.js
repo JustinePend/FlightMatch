@@ -49,7 +49,7 @@ export default function Login() {
         </h3>
         <br></br>
         <body>
-          If you log out, you will be prompted to login again.
+          If you would like to log out, press this button and you will be prompted to login again.
         </body>
         <form logout={logout}>
           <div className="form-group">
@@ -111,7 +111,7 @@ export default function Login() {
             className="form-control"
             id="UID"
             value={form.UID}
-            requried
+            required
             minLength="9"
             maxLength="9"
             pattern="\d*"
