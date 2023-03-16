@@ -72,6 +72,11 @@ export default function RecordList() {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (val) => {
+
+    if (val === null){
+      setSelectedDate(new Date())
+      return;
+    }
     setSelectedDate(val);
 
     const newRecords = records.filter((el) => el.date === val);
@@ -156,8 +161,8 @@ export default function RecordList() {
           maxDate={new Date(curr_date_1)}
         />
       </div>
-      <h5> Other Arriving Flights: </h5>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
+      <h5 style={{marginTop: 30}}> Other Arriving Flights: </h5>
+      <table className="table table-striped" style={{ marginTop: 0 }}>
         <thead>
           <tr>
             <th>Flight Number</th>
@@ -169,8 +174,8 @@ export default function RecordList() {
         </thead>
         <tbody>{recordList()}</tbody>
       </table>
-      <h5> My Flights: </h5>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
+      <h5 style={{marginTop: 40}}> My Flights: </h5>
+      <table className="table table-striped" style={{ marginTop: 0 }}>
         <thead>
           <tr>
             <th>Flight Number</th>

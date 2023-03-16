@@ -16,12 +16,13 @@ import { NavLink } from "react-router-dom";
 export default function Navbar() {
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav style={{ paddingLeft: '20px'}} 
+      className="navbar navbar-expand-lg navbar-light bg-light">
           <h1>FlightMatch</h1>
 
         <div className="topbar">
           <ul className="navbar-nav ml-auto">
-            <li className="home">
+            <li style={{paddingLeft: '10px'}} className="home">
               <NavLink className="nav-link" to="/recordList">
                 Home
               </NavLink>
