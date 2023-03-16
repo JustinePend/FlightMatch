@@ -43,7 +43,7 @@ export default function Navbar() {
             </li>
             <li className="about">
               <NavLink className="nav-link" to="/about">
-                About
+                About Us
               </NavLink>
             </li>
             <li className="login">
