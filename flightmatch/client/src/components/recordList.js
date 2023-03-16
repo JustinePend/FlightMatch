@@ -4,13 +4,20 @@ import { useNavigate } from "react-router";
 import DatePicker from 'react-date-picker';
 import {getUID} from "./login.js";
 
+const columnStyle = {
+  textAlign: 'center',
+  padding: '10px',
+  border: '1px solid black',
+  width: '100px'
+};
+
 const Record = (props) => (
   <tr>
-    <td>{props.record.number}</td>
-    <td>{props.record.date}</td>
-    <td>{props.record.time}</td>
-    <td>{props.record.baggage}</td>
-    <td>
+    <td style={columnStyle}>{props.record.number}</td>
+    <td style={columnStyle}>{props.record.date}</td>
+    <td style={columnStyle}>{props.record.time}</td>
+    <td style={columnStyle}>{props.record.baggage}</td>
+    <td style={columnStyle}>
       <Link className="btn-link" to={`/display/${props.record._id}`}>Display User Profile</Link>
     </td>
   </tr>
@@ -18,11 +25,11 @@ const Record = (props) => (
 
 const MyFlights = (props) => (
   <tr>
-    <td>{props.record.number}</td>
-    <td>{props.record.date}</td>
-    <td>{props.record.time}</td>
-    <td>{props.record.baggage}</td>
-    <td>
+    <td style={columnStyle}>{props.record.number}</td>
+    <td style={columnStyle}>{props.record.date}</td>
+    <td style={columnStyle}>{props.record.time}</td>
+    <td style={columnStyle}>{props.record.baggage}</td>
+    <td style={columnStyle}>
       <Link className="btn-link" to={`/edit/${props.record._id}`}>Edit</Link>   
       <text> | </text>
       <Link className="btn-link" onClick={() => { props.deleteRecord(props.record._id);}}>
@@ -162,27 +169,27 @@ export default function RecordList() {
         />
       </div>
       <h5 style={{marginTop: 30}}> Other Arriving Flights: </h5>
-      <table className="table table-striped" style={{ marginTop: 0 }}>
+      <table className="table table-striped">
         <thead>
           <tr>
-            <th>Flight Number</th>
-            <th>Arrival Date</th>
-            <th>Arrival Time</th>
-            <th>Bags</th>
-            <th>Action</th>
+            <th style={columnStyle}>Flight Number</th>
+            <th style={columnStyle}>Arrival Date</th>
+            <th style={columnStyle}>Arrival Time</th>
+            <th style={columnStyle}>Bags</th>
+            <th style={columnStyle}>Action</th>
           </tr>
         </thead>
         <tbody>{recordList()}</tbody>
       </table>
       <h5 style={{marginTop: 40}}> My Flights: </h5>
-      <table className="table table-striped" style={{ marginTop: 0 }}>
+      <table className="table table-striped">
         <thead>
           <tr>
-            <th>Flight Number</th>
-            <th>Arrival Date</th>
-            <th>Arrival Time</th>
-            <th>Bags</th>
-            <th>Action</th>
+            <th style={columnStyle}>Flight Number</th>
+            <th style={columnStyle}>Arrival Date</th>
+            <th style={columnStyle}>Arrival Time</th>
+            <th style={columnStyle}>Bags</th>
+            <th style={columnStyle}>Action</th>
           </tr>
         </thead>
         <tbody>{flightList()}</tbody>
