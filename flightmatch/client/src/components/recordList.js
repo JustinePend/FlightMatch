@@ -20,7 +20,7 @@ const Record = (props) => (
         Delete
       </button>
       <button className="btn btn-link">
-        Request Match
+         <Link className="btn btn-link" to={`/display/${props.record._id}`}>Display Profile</Link>
       </button>
     </td>
   </tr>
