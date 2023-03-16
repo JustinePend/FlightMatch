@@ -23,6 +23,18 @@ async function getProfile(uid){
   return x;
 }
 
+// function logout() {
+//   currUID = 0;
+//   console.log("Should've logged out ", getUID())
+//   return (
+//     <div>
+//       <h2>
+//         Thank you for using FlightMatch!
+//       </h2>
+//     </div>
+//   );
+// }
+
 export function getUID(){ //Function to access UID variable
   return currUID;
 }
@@ -32,6 +44,41 @@ export default function Login() {
     UID: "",
   });
   const navigate = useNavigate();
+
+  function logout() {
+    currUID = 0;
+    console.log("Should've logged out ", getUID())
+    return (
+      <div>
+        <h2>
+          Thank you for using FlightMatch!
+        </h2>
+      </div>
+    );
+  }
+
+  //If user is already logged in
+  if (getUID() !== 0)
+  {
+    function logout() {
+      currUID = 0;
+      console.log("Should've logged out ", getUID())
+      return (
+        <div>
+          <h2>
+            Thank you for using FlightMatch!
+          </h2>
+        </div>
+      );
+    }
+    
+    return (
+      <div>
+        <h2> You are already logged in! </h2>
+        <button onClick={logout}>Logout</button>
+      </div>
+    );
+  }
 
   // These methods will update the state properties.
   function updateForm(value) {
