@@ -3,17 +3,22 @@ Winter 2023 CS35L project. Web app to match people to split a rideshare based on
 
 **********************************************************
 Instructions for running server:
-create a file called config.env with the following and put it into the flightmatch/server folder
+create a file called config.env with the following code and put it into the flightmatch/server folder
 
-# contents of config.env
-ATLAS_URI=mongodb+srv://'<'user'>':'<'password'>'@cluster0.lgu1nqk.mongodb.net/?retryWrites=true&w=majority
+```
+ATLAS_URI=mongodb+srv://<user>:<password>@cluster0.lgu1nqk.mongodb.net/?retryWrites=true&w=majority
 PORT=5001
-
+```
 
 Note*
-Normally we would not want unwanted people on our server but since this is a not an official website so we will provide an example login. You can use:
-'<'user'>' example
-'<'password'>' FlightMatch
+Normally we would not allow unwanted/unauthorized people on our server but since this is a not an official website so we will provide an example login to replace the user and password. You can use these credentials in your config.env file:
+- for \<user\> use: example
+- for \<password\>use :  FlightMatch
+
+```
+ATLAS_URI=mongodb+srv://example:FlightMatch@cluster0.lgu1nqk.mongodb.net/?retryWrites=true&w=majority
+PORT=5001
+```
 
 You can access your username and password by logging in to the MongoDB Flight Match project page at this website: https://www.mongodb.com/cloud 
 
