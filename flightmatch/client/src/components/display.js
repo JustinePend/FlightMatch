@@ -16,7 +16,7 @@ async function getProfile(uid){
   .then((res) => res.json())
   .then((data) => {
     x=data;
-    console.log("this is x ", x)
+    //console.log("this is x ", x)
   });
   return x;
 }
@@ -26,6 +26,8 @@ async function getFlightID(flightID){
   console.log(response);
   return response;
 }
+
+var profiledata;
 
 var profiledata;
 var record;
