@@ -168,7 +168,7 @@ export default function RecordList() {
           maxDate={new Date(curr_date_1)}
         />
       </div>
-      <h5 style={{marginTop: 30}}> Other Arriving Flights: </h5>
+      <h5 style={{marginTop: 30}}> Other UCLA Student's Arriving Flights: </h5>
       <table className="table table-striped">
         <thead>
           <tr>
