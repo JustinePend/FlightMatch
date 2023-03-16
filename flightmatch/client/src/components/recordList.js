@@ -11,9 +11,7 @@ const Record = (props) => (
     <td>{props.record.time}</td>
     <td>{props.record.baggage}</td>
     <td>
-      <button className="btn btn-link">
-         <Link className="btn btn-link" to={`/display/${props.record._id}`}>Display Profile</Link>
-      </button>
+      <Link className="btn-link" to={`/display/${props.record._id}`}>Display User's Profile</Link>
     </td>
   </tr>
 );
@@ -128,7 +126,7 @@ export default function RecordList() {
             <th>Flight Number</th>
             <th>Arrival Date</th>
             <th>Arrival Time</th>
-            <th>Baggage</th>
+            <th>Bags</th>
             <th>Action</th>
           </tr>
         </thead>
