@@ -23,17 +23,6 @@ async function getProfile(uid){
   return x;
 }
 
-// function logout() {
-//   currUID = 0;
-//   console.log("Should've logged out ", getUID())
-//   return (
-//     <div>
-//       <h2>
-//         Thank you for using FlightMatch!
-//       </h2>
-//     </div>
-//   );
-// }
 
 export function getUID(){ //Function to access UID variable
   return currUID;
@@ -45,37 +34,32 @@ export default function Login() {
   });
   const navigate = useNavigate();
 
-  function logout() {
-    currUID = 0;
-    console.log("Should've logged out ", getUID())
-    return (
-      <div>
-        <h2>
-          Thank you for using FlightMatch!
-        </h2>
-      </div>
-    );
-  }
-
   //If user is already logged in
   if (getUID() !== 0)
   {
     function logout() {
       currUID = 0;
-      console.log("Should've logged out ", getUID())
-      return (
-        <div>
-          <h2>
-            Thank you for using FlightMatch!
-          </h2>
-        </div>
-      );
+      navigate("/")
     }
-    
     return (
       <div>
-        <h2> You are already logged in! </h2>
-        <button onClick={logout}>Logout</button>
+        <h3> 
+          You are already logged in! 
+          Thank you for using FlightMatch!
+        </h3>
+        <br></br>
+        <body>
+          If you log out, you will be prompted to login again.
+        </body>
+        <form logout={logout}>
+          <div className="form-group">
+          <input
+            type="submit"
+            value="Log Out"
+            className="btn btn-primary"
+          />
+        </div>
+        </form>
       </div>
     );
   }
