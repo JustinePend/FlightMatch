@@ -12,6 +12,7 @@ import Login from "./components/login";
 import About from "./components/about";
 import Profile from "./components/profile";
 import Display from "./components/display";
+import MyFlights from "./components/myflights";
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/display/:id" element={<Display />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="myflights" element={<MyFlights />} />
       </Routes>
       </div>
     </div>

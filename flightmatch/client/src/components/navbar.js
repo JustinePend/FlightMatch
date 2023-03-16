@@ -36,9 +36,9 @@ export default function Navbar() {
                 Profile
               </NavLink>
             </li>
-            <li className="groups">
-              <NavLink className="nav-link" to="/">
-                View Groups
+            <li className="myflights">
+              <NavLink className="nav-link" to="/myflights">
+                My Flights
               </NavLink>
             </li>
             <li className="about">
