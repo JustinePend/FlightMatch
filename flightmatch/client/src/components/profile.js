@@ -147,6 +147,7 @@ export default function Profile() {
             className="form-control"
             id="tel"
             required
+            minLength="10"
             maxLength="15"
             value={form.phone}
             onChange={(e) => updateForm({ phone: e.target.value })}
