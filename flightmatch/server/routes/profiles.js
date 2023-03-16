@@ -28,7 +28,7 @@ profilesRoutes.route("/profiles").get(function (req, res) {
 profilesRoutes.route("/profiles/getUID").post(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { "UID": req.body.UID};
-  //console.log(myquery);
+  console.log(myquery);
   db_connect
       .collection("profiles")
       .findOne(myquery, function (err, result) {

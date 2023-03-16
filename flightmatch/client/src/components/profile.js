@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import {getUID} from "./login.js";
 
 
 export default function Profile() {
+  useEffect(()=> {
+    getProfile(getUID());
+  },[])
   const [form, setForm] = useState({
     UID: "",
     name: "", //need to set name somewhere in signup or login
@@ -55,8 +58,9 @@ export default function Profile() {
     })
     .then((res) => res.json())
     .then((data) => {
-      x=data._id;
-      console.log("this is x ", x)
+      x=data;
+      console.log(data);
+      setForm({ UID: data.UID, phone:data.phone, email: data.email, name:data.name});
     });
     return x;
   }
