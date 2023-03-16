@@ -114,7 +114,8 @@ export default function Profile() {
   // This following section will display the form that takes the input from the user.
   return (
     <div>
-      <h3>Profile</h3>
+      <h3>Profile of UID </h3>
+      <h5 style={{marginTop: 20}}>Your UID: {getUID()}</h5>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
