@@ -11,7 +11,23 @@ const Record = (props) => (
     <td>{props.record.time}</td>
     <td>{props.record.baggage}</td>
     <td>
-      <Link className="btn-link" to={`/display/${props.record._id}`}>Display User's Profile</Link>
+      <Link className="btn-link" to={`/display/${props.record._id}`}>Display User Profile</Link>
+    </td>
+  </tr>
+);
+
+const MyFlights = (props) => (
+  <tr>
+    <td>{props.record.number}</td>
+    <td>{props.record.date}</td>
+    <td>{props.record.time}</td>
+    <td>{props.record.baggage}</td>
+    <td>
+      <Link className="btn-link" to={`/edit/${props.record._id}`}>Edit</Link>   
+      <text> | </text>
+      <Link className="btn-link" onClick={() => { props.deleteRecord(props.record._id);}}>
+        Delete
+      </Link> 
     </td>
   </tr>
 );
@@ -107,7 +123,7 @@ export default function RecordList() {
 
     return filteredFlights2.map((record) => {
       return (
-        <Record
+        <MyFlights
           record={record}
           deleteRecord={() => deleteRecord(record._id)}
           key={record._id}
@@ -140,7 +156,7 @@ export default function RecordList() {
           maxDate={new Date(curr_date_1)}
         />
       </div>
-      <h5> Other People's Flights: </h5>
+      <h5> Other Arriving Flights: </h5>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
@@ -153,7 +169,7 @@ export default function RecordList() {
         </thead>
         <tbody>{recordList()}</tbody>
       </table>
-      <h5> My flights: </h5>
+      <h5> My Flights: </h5>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>

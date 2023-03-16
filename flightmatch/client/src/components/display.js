@@ -100,7 +100,7 @@ export default function Display() {
               Email: {profdata.email}
             </div>
             <div>
-              Phone Number {profdata.phone}
+              Phone Number: {profdata.phone}
             </div>
           </h3>
           
