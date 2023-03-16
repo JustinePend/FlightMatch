@@ -30,9 +30,9 @@ const MyFlights = (props) => (
     <td style={columnStyle}>{props.record.time}</td>
     <td style={columnStyle}>{props.record.baggage}</td>
     <td style={columnStyle}>
-      <Link className="btn-link" to={`/edit/${props.record._id}`}>Edit</Link>   
+      <Link style={{padding: '3px'}} className="btn-link" to={`/edit/${props.record._id}`}>Edit</Link>   
       <text> | </text>
-      <Link className="btn-link" onClick={() => { props.deleteRecord(props.record._id);}}>
+      <Link style={{padding: '3px'}} className="btn-link" onClick={() => { props.deleteRecord(props.record._id);}}>
         Delete
       </Link> 
     </td>

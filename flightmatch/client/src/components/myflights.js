@@ -3,16 +3,23 @@ import { Link } from "react-router-dom";
 import {getUID} from "./login.js";
 import { useNavigate } from "react-router";
 
+const columnStyle = {
+  textAlign: 'center',
+  padding: '10px',
+  border: '1px solid black',
+  width: '100px'
+};
+
 const Record = (props) => (
   <tr>
-    <td>{props.record.number}</td>
-    <td>{props.record.date}</td>
-    <td>{props.record.time}</td>
-    <td>{props.record.baggage}</td>
-    <td>
-      <Link className="btn-link" to={`/edit/${props.record._id}`}>Edit</Link>   
+    <td style={columnStyle}>{props.record.number}</td>
+    <td style={columnStyle}>{props.record.date}</td>
+    <td style={columnStyle}>{props.record.time}</td>
+    <td style={columnStyle}>{props.record.baggage}</td>
+    <td style={columnStyle}>
+      <Link style={{padding: '3px'}} className="btn-link" to={`/edit/${props.record._id}`}>Edit</Link>   
       <text> | </text>
-      <Link className="btn-link" onClick={() => { props.deleteRecord(props.record._id);}}>
+      <Link style={{padding: '3px'}} className="btn-link" onClick={() => { props.deleteRecord(props.record._id);}}>
         Delete
       </Link> 
     </td>
@@ -96,11 +103,11 @@ export default function FlightList() {
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
-            <th>Flight Number</th>
-            <th>Arrival Date</th>
-            <th>Arrival Time</th>
-            <th>Bags</th>
-            <th>Action</th>
+            <th style={columnStyle}>Flight Number</th>
+            <th style={columnStyle}>Arrival Date</th>
+            <th style={columnStyle}>Arrival Time</th>
+            <th style={columnStyle}>Bags</th>
+            <th style={columnStyle}>Action</th>
           </tr>
         </thead>
         <tbody>{FlightList()}</tbody>
