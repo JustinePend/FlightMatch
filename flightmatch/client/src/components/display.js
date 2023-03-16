@@ -77,7 +77,6 @@ export default function Display() {
 
     console.log("This is from do everything", profdata);
     const flightid = params.id.toString();
-    doeverything(flightid);
 
     if (getUID() === 0)
     {
