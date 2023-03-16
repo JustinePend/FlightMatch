@@ -28,8 +28,6 @@ async function getFlightID(flightID){
 }
 
 var profiledata;
-
-var profiledata;
 var record;
 
 export default function Display() {
@@ -77,7 +75,6 @@ export default function Display() {
 
     console.log("This is from do everything", profdata);
     const flightid = params.id.toString();
-    doeverything(flightid);
 
     if (getUID() === 0)
     {

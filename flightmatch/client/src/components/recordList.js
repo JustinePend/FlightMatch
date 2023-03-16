@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {getUID} from "./login.js";
 import { useNavigate } from "react-router";
 import DatePicker from 'react-date-picker';
+import {getUID} from "./login.js";
 
 const Record = (props) => (
   <tr>
@@ -18,15 +18,16 @@ const Record = (props) => (
         }}
       >
         Delete
-      </button> |
-      <Link className="btn btn-link" to={`/display/${props.record._id}`}>Display Profile</Link>
+      </button>
+      <button className="btn btn-link">
+         <Link className="btn btn-link" to={`/display/${props.record._id}`}>Display Profile</Link>
+      </button>
     </td>
   </tr>
 );
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);
-  const navigate = useNavigate();
 
   // This method fetches the records from the database.
   useEffect(() => {
@@ -60,7 +61,6 @@ export default function RecordList() {
   }
 
 
-
   //Variables for dates for list of flights
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -84,25 +84,17 @@ export default function RecordList() {
   yesterday.setDate(yesterday.getDate() - 1);
 
   // This method will map out the records on the table
-  //note
-  function RecordList() {
+  function recordList() {
     
-    let filteredFlights = records.filter(
+    const filteredFlights = records.filter(
+      (flight) => flight.date === selectedDate.toISOString().slice(0, 10)
+    );
+
+    let filteredFlights2 = filteredFlights.filter(
       (flight) => flight.uid !== getUID()
     );
-      //The filter shows flights that don't match getUID
 
-    if (getUID() === 0)
-    {
-      filteredFlights = records.filter(
-        (flight) => flight.uid === -1
-      );
-    }
-    //Since no UID can be negative, this shows no flights
-    
-    console.log("THE UID is: ", getUID());
-
-    return filteredFlights.map((record) => {
+    return filteredFlights2.map((record) => {
       return (
         <Record
           record={record}
@@ -111,20 +103,8 @@ export default function RecordList() {
         />
       );
     });
-
   }
-  const [value, onChange] = useState(new Date());
 
-  if (getUID() === 0)
-  {
-    return (
-      <div>
-        <h3> Invalid Credentials. Must be Logged in to view this page </h3>
-        <h3> Use the Navigation Bar or Press the Button to Login</h3>
-        <button onClick={() => navigate("/")}>Go to Login</button>
-      </div>
-    );
-  }
 
   // This following section will display the table with the records of individuals.
   return (
@@ -150,7 +130,7 @@ export default function RecordList() {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>{RecordList()}</tbody>
+        <tbody>{recordList()}</tbody>
       </table>
     </div>
   );
