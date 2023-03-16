@@ -20,6 +20,7 @@ const Record = (props) => (
 
 export default function RecordList() {
   const [records, setRecords] = useState([]);
+  const navigate = useNavigate();
 
   // This method fetches the records from the database.
   useEffect(() => {
@@ -96,8 +97,17 @@ export default function RecordList() {
       );
     });
   }
-
-
+  
+  if (getUID() === 0)
+  {
+    return (
+      <div>
+        <h3> Invalid Credentials. Must be Logged in to view this page </h3>
+        <h3> Use the Navigation Bar or Press the Button to Login</h3>
+        <button onClick={() => navigate("/")}>Go to Login</button>
+      </div>
+    );
+  }
   // This following section will display the table with the records of individuals.
   return (
     <div>
