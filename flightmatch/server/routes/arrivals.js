@@ -17,11 +17,15 @@ arrivingRoutes.route("/arriving").get(function (req, res) {
   
   let db_connect = dbo.getDb("flights");
 
-  const sortf = {time: 1};
+  const sortf = {
+    'date': 1
+  };
+  // const sortg = {time: 1};
 
   db_connect.collection("arriving")
    .find({})
-   .sort(sortf)
+   .sort({time: 1})
+   .sort({date: 1})
    .toArray( function (err, result) {
       if (err) throw err;
       res.json(result);

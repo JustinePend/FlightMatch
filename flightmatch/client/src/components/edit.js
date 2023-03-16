@@ -64,7 +64,7 @@ export default function Edit() {
       },
     });
 
-    navigate("/recordList");
+    navigate("/myflights");
   }
 
   if (getUID() === 0)

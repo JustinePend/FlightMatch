@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {getUID} from "./login.js";
 import { useNavigate } from "react-router";
-import DatePicker from 'react-date-picker';
 
 const Record = (props) => (
   <tr>
@@ -13,11 +12,7 @@ const Record = (props) => (
     <td>
       <Link className="btn-link" to={`/edit/${props.record._id}`}>Edit</Link>   
       <text> | </text>
-      <Link className="btn-link"
-        onClick={() => {
-          props.deleteRecord(props.record._id);
-        }}
-      >
+      <Link className="btn-link" onClick={() => { props.deleteRecord(props.record._id);}}>
         Delete
       </Link> 
     </td>
@@ -31,7 +26,7 @@ export default function RecordList() {
   // This method fetches the records from the database.
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`http://localhost:5001/arriving/`);
+      const response = await fetch(`http://localhost:5001/arriving`);
 
       if (!response.ok) {
         const message = `An error occured: ${response.statusText}`;
@@ -59,46 +54,14 @@ export default function RecordList() {
     setRecords(newRecords);
   }
 
-
-
-  //Variables for dates for list of flights
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
-  const handleDateChange = (val) => {
-    setSelectedDate(val);
-
-    const newRecords = records.filter((el) => el.date === val);
-    setRecords(newRecords);
-  };
-
-  let date_ob = new Date();
-  let day = ("0" + date_ob.getDate()).slice(-2);
-  let month = ("0" + (date_ob.getMonth() + 1)).slice(-2);
-  let year = (date_ob.getFullYear()+1);
-  let curr_date_1 = year + "-" + month + "-" + day;
-  //const [filter, setFilter] = useState (new Date());
-  //{'date': {'$gt': curr_date }}
-  //.filter((flight) => flight.date === val)
-
-  let yesterday = new Date ();
-  yesterday.setDate(yesterday.getDate() - 1);
-
   // This method will map out the records on the table
   //note
   function RecordList() {
     
+    //The filter shows flights that match getUID
     let filteredFlights = records.filter(
       (flight) => flight.uid === getUID()
     );
-      //The filter shows flights that don't match getUID
-
-    if (getUID() === 0)
-    {
-      filteredFlights = records.filter(
-        (flight) => flight.uid === -1
-      );
-    }
-    //Since no UID can be negative, this shows no flights
     
     console.log("THE UID is: ", getUID());
 
@@ -111,9 +74,8 @@ export default function RecordList() {
         />
       );
     });
-
   }
-  const [value, onChange] = useState(new Date());
+
 
   if (getUID() === 0)
   {
