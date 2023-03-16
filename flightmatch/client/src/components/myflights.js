@@ -19,7 +19,7 @@ const Record = (props) => (
   </tr>
 );
 
-export default function RecordList() {
+export default function FlightList() {
   const [records, setRecords] = useState([]);
   const navigate = useNavigate();
 
@@ -56,7 +56,7 @@ export default function RecordList() {
 
   // This method will map out the records on the table
   //note
-  function RecordList() {
+  function FlightList() {
     
     //The filter shows flights that match getUID
     let filteredFlights = records.filter(
@@ -103,7 +103,7 @@ export default function RecordList() {
             <th>Action</th>
           </tr>
         </thead>
-        <tbody>{RecordList()}</tbody>
+        <tbody>{FlightList()}</tbody>
       </table>
     </div>
   );

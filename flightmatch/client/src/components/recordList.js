@@ -95,6 +95,26 @@ export default function RecordList() {
       );
     });
   }
+
+  function flightList() {
+    const filteredFlights = records.filter(
+      (flight) => flight.date === selectedDate.toISOString().slice(0, 10)
+    );
+
+    let filteredFlights2 = filteredFlights.filter(
+      (flight) => flight.uid === getUID()
+    );
+
+    return filteredFlights2.map((record) => {
+      return (
+        <Record
+          record={record}
+          deleteRecord={() => deleteRecord(record._id)}
+          key={record._id}
+        />
+      );
+    });
+  }
   
   if (getUID() === 0)
   {
@@ -120,6 +140,7 @@ export default function RecordList() {
           maxDate={new Date(curr_date_1)}
         />
       </div>
+      <h5> Other People's Flights: </h5>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>
@@ -132,6 +153,19 @@ export default function RecordList() {
         </thead>
         <tbody>{recordList()}</tbody>
       </table>
+      <h5> My flights: </h5>
+      <table className="table table-striped" style={{ marginTop: 20 }}>
+        <thead>
+          <tr>
+            <th>Flight Number</th>
+            <th>Arrival Date</th>
+            <th>Arrival Time</th>
+            <th>Bags</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>{flightList()}</tbody>
+      </table>        
     </div>
   );
 }
