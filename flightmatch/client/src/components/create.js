@@ -25,7 +25,7 @@ export default function Create() {
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
-
+    
     // When a post request is sent to the create url, we'll add a new arriving flight to the database.
     const newEntry = { ...form };
     newEntry.uid = getUID(); 
@@ -45,8 +45,7 @@ export default function Create() {
     });
 
     setForm({ number: "", date: "", time: "", baggage: "", uid: "", });
-    navigate("/");
-
+    navigate("/recordList");
   }
 
   let date_ob = new Date();
@@ -80,6 +79,18 @@ export default function Create() {
   // </div>
 
 
+  // This following section will display the form that takes the input from the user.
+  
+  if (getUID() === 0)
+  {
+    return (
+      <div>
+        <h3> Invalid Credentials. Must be Logged in to view this page </h3>
+        <h3> Use the Navigation Bar or Press the Button to Login</h3>
+        <button onClick={() => navigate("/")}>Go to Login</button>
+      </div>
+    );
+  }
   return (
     <div>
       <h3>Enter Flight Information</h3>

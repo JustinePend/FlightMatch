@@ -11,6 +11,7 @@ import Create from "./components/create";
 import Login from "./components/login";
 import About from "./components/about";
 import Profile from "./components/profile";
+import Display from "./components/display";
 
 
 const App = () => {
@@ -24,7 +25,7 @@ const App = () => {
         <Route path="/recordList" element={<RecordList />} />
         <Route path="/edit/:id" element={<Edit />} />
         <Route path="/create" element={<Create />} />
-        
+        <Route path="/display/:id" element={<Display />} />
         <Route path="/about" element={<About />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>

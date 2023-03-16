@@ -6,14 +6,18 @@ import "bootstrap/dist/css/bootstrap.css";
 // We import NavLink to utilize the react router.
 import { NavLink } from "react-router-dom";
 
+
+//Link to old navbar <h1> FlightMatch. Want to remove this route
+//<NavLink className="nav-link" to="/">
+  //<h1>FlightMatch</h1>
+//</NavLink>
+
 // Here, we display our Navbar
 export default function Navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <NavLink className="nav-link" to="/">
           <h1>FlightMatch</h1>
-        </NavLink>
 
         <div className="topbar">
           <ul className="navbar-nav ml-auto">

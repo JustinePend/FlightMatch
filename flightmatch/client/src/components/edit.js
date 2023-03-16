@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
+import {getUID} from "./login.js";
 
 export default function Edit() {
   const [form, setForm] = useState({
@@ -64,6 +65,17 @@ export default function Edit() {
     });
 
     navigate("/");
+  }
+
+  if (getUID() === 0)
+  {
+    return (
+      <div>
+        <h3> Invalid Credentials. Must be Logged in to view this page </h3>
+        <h3> Use the Navigation Bar or Press the Button to Login</h3>
+        <button onClick={() => navigate("/")}>Go to Login</button>
+      </div>
+    );
   }
 
   // This following section will display the form that takes input from the user to update the data.

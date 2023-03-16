@@ -28,7 +28,7 @@ profilesRoutes.route("/profiles").get(function (req, res) {
 profilesRoutes.route("/profiles/getUID").post(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { "UID": req.body.UID};
-  console.log(myquery);
+  //console.log(myquery);
   db_connect
       .collection("profiles")
       .findOne(myquery, function (err, result) {
@@ -89,5 +89,29 @@ profilesRoutes.route("/:id").delete((req, response) => {
     response.json(obj);
   });
 });
+
+// // This section will help you get a single arriving flight by id
+// arrivingRoutes.route("/arriving/:id").get(function (req, res) {
+//   let db_connect = dbo.getDb();
+//   let myquery = { _id: ObjectId( req.params.id )};
+//   db_connect
+//       .collection("arriving")
+//       .findOne(myquery, function (err, result) {
+//         if (err) throw err;
+//         res.json(result);
+//       });
+// });
+
+// This section will help you delete an arriving flight
+// arrivingRoutes.route("/:id").delete((req, response) => {
+//   let db_connect = dbo.getDb();
+//   let myquery = { _id: ObjectId( req.params.id )};
+//   db_connect.collection("arriving").deleteOne(myquery, function (err, obj) {
+//     if (err) throw err;
+//     console.log("1 document deleted");
+//     response.json(obj);
+//   });
+// });
+
 
 module.exports = profilesRoutes;
