@@ -96,6 +96,17 @@ export default function Profile() {
     navigate("/recordList"); 
   }
 
+  if (getUID() === 0)
+  {
+    return (
+      <div>
+        <h3> Invalid Credentials. Must be Logged in to view this page </h3>
+        <h3> Use the Navigation Bar or Press the Button to Login</h3>
+        <button onClick={() => navigate("/")}>Go to Login</button>
+      </div>
+    );
+  }
+
   // This following section will display the form that takes the input from the user.
   return (
     <div>
