@@ -64,7 +64,7 @@ export default function Edit() {
       },
     });
 
-    navigate("/");
+    navigate("/recordList");
   }
 
   if (getUID() === 0)
