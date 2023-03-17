@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import {getUID} from "./login.js";
 
+const columnStyle = {
+  textAlign: 'center',
+  padding: '10px',
+  border: '1px solid black',
+  width: '100px'
+};
+
 
 async function getProfile(uid){
   var x;
@@ -16,6 +23,7 @@ async function getProfile(uid){
   .then((res) => res.json())
   .then((data) => {
     x=data;
+    //console.log("this is x ", x)
   });
   return x;
 }
@@ -90,8 +98,8 @@ export default function Display() {
     return (
       <div>
         <h3>
-          Profile and Contact Information of the student on flight {fdata.number} 
-          <h3>
+          Profile and Contact Info
+          <h5>
             <div>
               Name: {profdata.name}
             </div>
@@ -101,25 +109,25 @@ export default function Display() {
             <div>
               Phone Number: {profdata.phone}
             </div>
-          </h3>
+          </h5>
           
         </h3>
         <body>
           <table className="table table-striped" style={{ marginTop: 20 }}>
             <thead>
               <tr>
-                <th>Flight Number</th>
-                <th>Arrival Date</th>
-                <th>Arrival Time</th>
-                <th>Baggage</th>
+              <th style={columnStyle}>Flight Number</th>
+            <th style={columnStyle}>Arrival Date</th>
+            <th style={columnStyle}>Arrival Time</th>
+            <th style={columnStyle}>Bags</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td> {fdata.number}</td>
-                <td> {fdata.date}</td>
-                <td> {fdata.time}</td>
-                <td> {fdata.baggage}</td>
+                <td style={columnStyle}>{fdata.number}</td>
+                <td style={columnStyle}> {fdata.date}</td>
+                <td style={columnStyle}>{fdata.time}</td>
+                <td style={columnStyle}>{fdata.baggage}</td>
               </tr>
             </tbody>
           </table>
