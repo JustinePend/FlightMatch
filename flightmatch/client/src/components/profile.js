@@ -135,7 +135,7 @@ export default function Profile() {
             type="email"
             className="form-control"
             id="email"
-            requried
+            required
             value={form.email}
             maxLength="254"
             onChange={(e) => updateForm({ email: e.target.value })}

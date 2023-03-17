@@ -47,18 +47,18 @@ export default function Login() {
           You are already logged in! 
           Thank you for using FlightMatch!
         </h3>
-        <br></br>
-        <body>
+        <p style={{fontSize: '20px', marginTop: 20}}>
           If you would like to log out, press this button and you will be prompted to login again.
-        </body>
-        <form logout={logout}>
+        </p>
+        <form>
           <div className="form-group">
           <input
+            onClick={logout}
             type="submit"
             value="Log Out"
             className="btn btn-primary"
           />
-        </div>
+          </div>
         </form>
       </div>
     );
