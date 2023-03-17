@@ -90,8 +90,8 @@ export default function Display() {
     // This following section will display the form that takes input from the user to update the data.
     return (
       <div>
-        <h1>
-          Profile
+        <h3>
+          Profile and Contact Information of the student on flight {fdata.number} 
           <h3>
             <div>
               Name: {profdata.name}
@@ -104,7 +104,7 @@ export default function Display() {
             </div>
           </h3>
           
-        </h1>
+        </h3>
         <body>
           <table className="table table-striped" style={{ marginTop: 20 }}>
             <thead>
