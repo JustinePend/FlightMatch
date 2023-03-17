@@ -16,7 +16,7 @@ Normally we would not allow unwanted/unauthorized people on our server but since
 - for \<password\>use :  FlightMatch
 
 ```
-ATLAS_URI=mongodb+srv://example:FlightMatch@cluster0.lgu1nqk.mongodb.net/?retryWrites=true&w=majority
+ATLAS_URI=mongodb+srv://sliebs:FlightMatch@cluster0.lgu1nqk.mongodb.net/?retryWrites=true&w=majority
 PORT=5001
 ```
 
