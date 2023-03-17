@@ -125,6 +125,10 @@ export default function Display() {
             </tbody>
           </table>
         </body>
+        <div>
+          <button style={{marginTop: 20}} onClick={() => navigate("/recordList")}>Go Back to Flight List</button>
+        </div>
+
       </div>
       
     );
