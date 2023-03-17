@@ -12,7 +12,7 @@ PORT=5001
 
 Note*
 Normally we would not allow unwanted/unauthorized people on our server but since this is a not an official website so we will provide an example login to replace the user and password. You can use these credentials in your config.env file:
-- for \<user\> use: example
+- for \<user\> use: sliebs
 - for \<password\>use :  FlightMatch
 
 ```
@@ -39,4 +39,4 @@ run these commands:
 3. npm install
 4. npm start
 
-*Note- there may be an issue with deprecated packages, and you might need to run the command npm audit fix and/or npm audit fix --force to get rid of them. However, if there are 5-6 deprecated packages, don't worry about those, the program still works fine.
+*Note- there may be an issue with deprecated packages, and you might need to run the command npm audit fix and/or npm audit fix --force to get rid of them. However, if there are 5-7 deprecated packages, don't worry about those, the web app still works fine.
