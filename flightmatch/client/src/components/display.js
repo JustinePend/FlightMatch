@@ -16,7 +16,6 @@ async function getProfile(uid){
   .then((res) => res.json())
   .then((data) => {
     x=data;
-    //console.log("this is x ", x)
   });
   return x;
 }

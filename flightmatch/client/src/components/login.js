@@ -23,7 +23,6 @@ async function getProfile(uid){
   return x;
 }
 
-
 export function getUID(){ //Function to access UID variable
   return currUID;
 }
@@ -94,8 +93,6 @@ export default function Login() {
     else{
       navigate("/recordList")
     }
-    
-    
   }
 
   // This following section will display the form that takes the input from the user.
@@ -103,7 +100,7 @@ export default function Login() {
     <div>
       <h1> Welcome to UCLA Flight Match- Log in to Get Started </h1>
       <h3>Please Log in with UCLA UID</h3>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="form-inline">
         <div className="form-group">
           <label htmlFor="UID">UID</label>
           <input
@@ -114,18 +111,21 @@ export default function Login() {
             required
             minLength="9"
             maxLength="9"
+            width="aut"
             pattern="\d*"
             title="UID must contain only integers"
             onChange={(e) => updateForm({ UID: e.target.value })}
+            size={"10"}
           />
-        </div>
-        <div className="form-group">
           <input
             type="submit"
             value="Sign In"
             className="btn btn-primary"
           />
         </div>
+        {/* <div className="form-group">
+          
+        </div> */}
       </form>
     </div>
   );

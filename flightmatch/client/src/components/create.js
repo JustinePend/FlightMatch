@@ -54,31 +54,6 @@ export default function Create() {
   let year = (date_ob.getFullYear() + 1);
   let curr_date_1=year + "-" + month + "-" + date;
   //Max time one year in advance
-  // const current_date = new Date().toLocaleDateString();  // This following section will display the form that takes the input from the user.
-  // const now = new Date();
-
-  //Stash of unused date-picker implementation for date-lim
-  
-  // const [selectedDate, setSelectedDate] = useState(new Date());
-  // const handleDateChange = (e) => {
-  //   setSelectedDate(e);
-  // };
-  // setSelectedDate(val);
-  // const newRecords = records.filter((el) => el.date === val);
-  // setRecords(newRecords);
-
-  //date picker display
-  // <div>
-  //   <DatePicker 
-  //   value={selectedDate} 
-  //   onChange={handleDateChange}
-  //   required
-  //   minDate={new Date()}
-  //   maxDate={new Date(curr_date_1)}
-  //   />
-  // </div>
-
-
   // This following section will display the form that takes the input from the user.
   
   if (getUID() === 0)

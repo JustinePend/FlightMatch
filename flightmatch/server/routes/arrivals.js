@@ -32,8 +32,6 @@ arrivingRoutes.route("/arriving").get(function (req, res) {
     });
   });
 
-
-
 // This section will help you get a single arriving flight by id
 arrivingRoutes.route("/arriving/:id").get(function (req, res) {
   let db_connect = dbo.getDb();

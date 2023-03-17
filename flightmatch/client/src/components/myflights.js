@@ -82,7 +82,6 @@ export default function FlightList() {
     });
   }
 
-
   if (getUID() === 0)
   {
     return (

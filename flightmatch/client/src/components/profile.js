@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import {getUID} from "./login.js";
 
 
 export default function Profile() {
+  const params = useParams();
+  const navigate = useNavigate();
+
   useEffect(()=> {
     getProfile(getUID());
-  },[])
+  },[params.id], navigate)
   const [form, setForm] = useState({
     UID: "",
     name: "", //need to set name somewhere in signup or login
     email: "", 
     phone: "",
   });
-  const navigate = useNavigate();
 
   // These methods will update the state properties.
   function updateForm(value) {
@@ -21,7 +23,6 @@ export default function Profile() {
       return { ...prev, ...value };
     });
   }
-
 
   async function createProfile(profile){
     await fetch("http://localhost:5001/profiles/add", {
@@ -37,14 +38,36 @@ export default function Profile() {
     });
   }
 
-  // async function getProfile(uid){
-  //   const xd=(await fetch('http://localhost:5001/profiles/${uid}')
-  //   .catch(error => {
-  //     window.alert(error);
-  //     return;
-  //   }));
-  //   return xd;
-  // }
+  async function getProfileID(uid){
+    var x;
+    await fetch("http://localhost:5001/profiles/getUID", {
+      //replace with get id from UID
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", 
+      },
+      body: JSON.stringify({UID: uid})
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      x=data._id;
+    });
+    return x;
+  }
+
+
+  async function editProfile(profile){
+    var id = await getProfileID(profile.UID);
+    profile.profileid = id;
+
+    await fetch(`http://localhost:5001/profiles/update`, {
+      method: "POST",
+      body: JSON.stringify(profile),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+  }
 
  async function getProfile(uid){
     var x;
@@ -59,43 +82,30 @@ export default function Profile() {
     .then((res) => res.json())
     .then((data) => {
       x=data;
-      console.log(data);
-      setForm({ UID: data.UID, phone:data.phone, email: data.email, name:data.name});
+      if(data != null) {
+        setForm({ UID: data.UID, phone:data.phone, email: data.email, name:data.name});
+      }
     });
     return x;
   }
-
 
   // This function will handle the submission.
   async function onSubmit(e) {
     e.preventDefault();
     // When a post request is sent to the create url, we'll add a new record to the database.
-    
-    const newEntry = { ...form }; //Get form data and set UID
-    console.log("this is from calling getUID ", getUID());
-    newEntry.UID = getUID(); 
-    console.log("this is the form", newEntry)
 
+    const entry = { ...form }; //Get form data and set UID
+    entry.UID = getUID(); 
+    let y = await getProfile(getUID());
     //Create profile with all elements
-    
-    createProfile(newEntry);
-    // await fetch("http://localhost:5001/profiles/" + currUID, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json", 
-    //   },
-    //   body: JSON.stringify(newEntry),
-    // })
-    // .catch(error => {
-    //   window.alert(error);
-    //   return;
-    // });
-    console.log("ive had enough but this is value of currUID ", getUID())
-    console.log("this is the return value of getProfile ", await getProfile(getUID()));
-    
-
-
-
+    if(y == null){
+      console.log("here at create profile")
+      createProfile(entry);
+    }
+    else{
+      editProfile(entry);
+    }
+  
     setForm({ UID: "", phone:"", email: "", name: ""});
     navigate("/recordList"); 
   }
